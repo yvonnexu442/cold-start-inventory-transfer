@@ -1,4 +1,4 @@
-"""Prespecified post-primary experiments for acceptance-risk reduction."""
+"""Prespecified post-primary baseline and sensitivity experiments."""
 
 from __future__ import annotations
 
@@ -605,7 +605,7 @@ def run_targeted_acceptance_extension() -> dict[str, Any]:
     primary = paired[paired["metric"] == "oracle_cost_normalized_regret"]
     _write_summary(
         output / "targeted_extension_summary.md",
-        "Targeted Acceptance-Enhancement Extension",
+        "Prespecified Baseline and Sensitivity Extension",
         str(extension["reporting_rules"]["label"]),
         "## Protocol checks\n\n"
         + _markdown_table(pd.DataFrame([checks]))

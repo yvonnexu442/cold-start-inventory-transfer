@@ -16,12 +16,7 @@ def require_matplotlib_panel_alignment(
     require_panel_labels: bool = True,
     strict: bool = True,
 ) -> None:
-    """Record lightweight panel geometry diagnostics for a Matplotlib figure.
-
-    The full development repository used a richer manuscript-figure audit helper.
-    The public snapshot only needs a deterministic local guard that confirms the
-    expected axes are present and records their normalized bounding boxes.
-    """
+    """Validate expected axes and record normalized panel geometry."""
 
     axes = list(fig.axes)
     if strict and not axes:

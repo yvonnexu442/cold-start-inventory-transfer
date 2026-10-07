@@ -1,0 +1,60 @@
+random_seed: 20260806
+output_path: outputs/sprint2
+
+datasets:
+  MAN:
+    sample_size: 300
+    cutoffs: [96, 108, 120]
+    holdout_horizon: 26
+    pseudo_target_count: 240
+    pseudo_validation_horizon: 12
+    minimum_nonzero_periods: 5
+    minimum_donor_pool_size: 20
+    native_lead_time_cap: 26
+  BRAF:
+    sample_size: 300
+    cutoffs: [48, 54, 60]
+    holdout_horizon: 18
+    pseudo_target_count: 240
+    pseudo_validation_horizon: 6
+    minimum_nonzero_periods: 5
+    minimum_donor_pool_size: 20
+    native_lead_time_cap: 18
+
+representation:
+  top_k: 10
+  broad_pool_size: 100
+  no_close_similarity:
+    MAN: 0.20
+    BRAF: 0.15
+  low_reliability_threshold: 0.35
+  folds: 5
+  logistic_regularization_c: 1.0
+
+scenario_construction:
+  number: 300
+  maximum_donor_weight: 0.35
+  minimum_effective_donors: 3.0
+  weighting_candidates:
+    - similarity_only
+    - reliability_only
+    - combined_temperature_0_5
+    - combined_temperature_1_0
+    - combined_temperature_2_0
+    - capped_combined
+    - reliability_fallback
+
+decision:
+  shortage_to_holding_ratios: [2, 5, 10]
+  lead_time_regimes: [native_capped, half_native_sensitivity]
+  capacity_regimes: [unconstrained, medium, tight]
+  conservative_quantile_increment: 0.05
+
+statistics:
+  bootstrap_repetitions: 1000
+  confidence_level: 0.95
+
+m5_compact:
+  enabled_after_spdf_success: true
+  sample_size: 500
+  cutoff_period: 1600

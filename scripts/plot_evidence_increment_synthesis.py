@@ -21,7 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys_path = str(ROOT / "scripts")
 if sys_path not in sys.path:
     sys.path.insert(0, sys_path)
-from audit_panel_alignment import require_matplotlib_panel_alignment
+from validate_panel_alignment import require_matplotlib_panel_alignment
 
 DEFAULT_CONFIG = ROOT / "configs/evidence_increment_synthesis.json"
 DEFAULT_OUTPUT = ROOT / "outputs/ai_darld_v3/evidence_increment_synthesis"
@@ -35,6 +35,7 @@ mpl.rcParams.update(
         "pdf.fonttype": 42,
         "ps.fonttype": 42,
         "svg.fonttype": "none",
+        "svg.hashsalt": "cold-start-inventory-transfer-v1",
         "axes.linewidth": 0.6,
     }
 )
@@ -347,7 +348,7 @@ def plot_forest(contrasts: pd.DataFrame, config: dict[str, Any], path: Path) -> 
             "ModDate": None,
         },
     )
-    fig.savefig(path.with_suffix(".svg"), bbox_inches="tight")
+    fig.savefig(path.with_suffix(".svg"), bbox_inches="tight", metadata={"Date": None})
     fig.savefig(path.with_suffix(".png"), dpi=600, bbox_inches="tight")
     plt.close(fig)
     svg_path = path.with_suffix(".svg")

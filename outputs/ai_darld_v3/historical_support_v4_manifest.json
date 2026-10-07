@@ -23,7 +23,7 @@
   "candidate_count_random": 96,
   "candidate_count_fixed_anchors": 4,
   "policy_development_targets_per_dataset_cutoff": 60,
-  "corrected_audit_targets_per_dataset": 250,
+  "corrected_evaluation_targets_per_dataset": 250,
   "cutoffs": {
     "MAN": [
       96,

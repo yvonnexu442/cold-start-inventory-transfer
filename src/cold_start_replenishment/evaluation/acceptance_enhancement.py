@@ -1,4 +1,4 @@
-"""Targeted acceptance-risk analyses using the frozen full-scale population."""
+"""Prespecified baseline analyses using the frozen full-scale population."""
 
 from __future__ import annotations
 

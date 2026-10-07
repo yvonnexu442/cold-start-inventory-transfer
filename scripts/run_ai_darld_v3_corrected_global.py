@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from run_ai_darld_v3_factorized import CORRECTED_AUDIT_TARGETS, _population
+from run_ai_darld_v3_factorized import CORRECTED_EVALUATION_TARGETS, _population
 
 from cold_start_replenishment.data.spdf_pilot import parse_braf, parse_man, redacted_id
 from cold_start_replenishment.evaluation.global_baselines import _global_and_block_results
@@ -31,7 +31,7 @@ def main() -> None:
     counts = {}
     for dataset in (parse_man(), parse_braf()):
         targets, eligible = _population(dataset, full)
-        targets = targets[: min(CORRECTED_AUDIT_TARGETS, len(targets))]
+        targets = targets[: min(CORRECTED_EVALUATION_TARGETS, len(targets))]
         target_ids = {
             redacted_id(dataset.name, dataset.metadata.iloc[int(source)].item_id)
             for source in targets
@@ -55,7 +55,7 @@ def main() -> None:
     manifest = {
         "manifest_schema": "corrected-global-v1",
         "solver": "exact_weighted_empirical_moq_minimum_fixed_cost_v2",
-        "targets_per_dataset": CORRECTED_AUDIT_TARGETS,
+        "targets_per_dataset": CORRECTED_EVALUATION_TARGETS,
         "methods": sorted(results.method.unique().tolist()),
         "rows_by_dataset": counts,
         "rolling_origins_per_part": 4,

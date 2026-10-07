@@ -3,7 +3,7 @@
   "config": "configs/evidence_increment_synthesis.json",
   "config_sha256": "2b311f01bf6e75572c39c59e9e2f1866cc0f299ca8fb332dad3a16ecea0ce49c",
   "generator": "scripts/plot_evidence_increment_synthesis.py",
-  "generator_sha256": "3b6f8dbd61b4de001b25e43c44ee3433a6e75924908b1c39737aa98e08010642",
+  "generator_sha256": "0f01559897da26e8dc83a691441314170b3d7564c2a10ce39021cb90a93fd5ee",
   "bootstrap_draws": 5000,
   "bootstrap_seed": 20261004,
   "estimand": "100 * (mean_cost_first - mean_cost_comparator) / mean_cost_comparator",
@@ -18,7 +18,7 @@
     "bootstrap_draw_summary.csv": "c9214971b335fdd105c9e0bbc8fcfa7bc94f42f66ebd244f1503ebcfa0836eb8",
     "outputs/ai_darld_v3/evidence_increment_synthesis/evidence_increment_forest.pdf": "18b994e35158682aa09b40ca42ced5434f9488d8fbb3cae7353ca11e89c14635",
     "outputs/ai_darld_v3/evidence_increment_synthesis/evidence_increment_forest.png": "92e0516ef17aa7bb0d197e31419de62709cc19635f2f70b1bb0af481403f77a8",
-    "outputs/ai_darld_v3/evidence_increment_synthesis/evidence_increment_forest.svg": "a52db523ab8b41f45df7266094f936eaceb27ccfbf63d695f83a1dc71cb7cc5d",
+    "outputs/ai_darld_v3/evidence_increment_synthesis/evidence_increment_forest.svg": "7efa50ec3e6b62c7cab5629ea518c4eeda1b41459cc64f7d706edeaa60df9e01",
     "evidence_increment_forest.alignment.json": "f2ee766225727a2d26bee6cdd4585b47d976e487ca8ee162641bf287bf8f96b3"
   },
   "coverage": {

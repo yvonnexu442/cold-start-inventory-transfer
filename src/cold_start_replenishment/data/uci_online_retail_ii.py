@@ -7,9 +7,9 @@ that latent demand was zero.
 
 from __future__ import annotations
 
+import hashlib
 from dataclasses import dataclass
 from pathlib import Path
-import hashlib
 
 import numpy as np
 import pandas as pd

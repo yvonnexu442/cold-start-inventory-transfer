@@ -17,11 +17,10 @@ information boundary:
   learned on historical pseudo-launches, then converted to the same decision
   interface.
 
-The repository contains code, configurations, aggregate outputs, public
-manifests, and tests needed to inspect the reported results. It does not
-contain the manuscript source, PDFs, raw third-party datasets, private
-development notes, or row-level outputs whose identifiers are not appropriate
-for redistribution.
+The repository contains code, frozen configurations, aggregate outputs,
+manifests, and tests needed to inspect the reported results. It does not contain
+the manuscript source, PDFs, or raw third-party datasets. Row-level evaluation
+outputs derived from the source datasets remain local.
 
 ## Data
 
@@ -34,18 +33,20 @@ according to `docs/dataset_download_instructions.md`.
 - Corporacion Favorita comes from the official Kaggle competition and is not
   redistributed here.
 
-The included outputs are aggregate or de-identified artifacts suitable for
-checking the published tables, sensitivity summaries, and figure inputs. Full
-training and row-level evaluation require the original data and local
-intermediate artifacts.
+The included outputs are aggregate artifacts and compact figure inputs suitable
+for checking the published tables and plots. The forest-plot product keys are
+redacted. The UCI and Favorita split manifests retain the source-dataset product
+keys needed to reconstruct frozen roles; these are catalog identifiers, not
+personal identifiers. Full training and row-level evaluation require the
+original data.
 
 ## Install
 
 ```bash
-python3 -m venv .venv
+python3.11 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
-python -m pip install -e ".[dev]"
+python -m pip install -e ".[dev,published-baseline]"
 ```
 
 ## Quick Start From Included Outputs
@@ -80,9 +81,14 @@ training.
 
 ## Full Training and Evaluation
 
-After placing the raw data as documented, the formal scripts are:
+After placing the raw data as documented, run the frozen entry points in this
+order. The first command reconstructs the local MAN/BRAF checkpoint files used
+by the subsequent service-parts scripts.
 
 ```bash
+# MAN/BRAF source preparation and local reliability checkpoints
+python scripts/generate_service_parts_checkpoints.py --dataset all
+
 # MAN/BRAF component-specific transfer and common baselines
 python scripts/run_ai_darld_v3_factorized.py
 python scripts/run_ai_darld_v3_corrected_global.py
@@ -90,6 +96,7 @@ python scripts/run_ai_darld_v3_direct_mixture.py
 
 # Online Retail II and Favorita external populations
 python scripts/run_uci_online_retail_ii_external.py
+python scripts/run_uci_confirmation_v2.py
 python scripts/run_favorita_untouched_confirmation.py
 python scripts/analyze_favorita_confirmation.py
 
@@ -105,10 +112,11 @@ python scripts/analyze_operational_cost_decomposition.py
 python scripts/generate_ai_darld_v3_worked_example.py
 ```
 
-Some scripts reuse local row-level artifacts or checkpoints that are not
-redistributed because they derive from third-party datasets or contain product
-identifiers. The included manifests record the formal output identities and
-source-file hashes where redistribution is not allowed.
+The Favorita runner keeps its historical filename so the frozen protocol and
+manifests remain executable; the reported study describes it as a pre-specified
+external evaluation. Local row-level outputs and checkpoints are regenerated
+from the source datasets and are not redistributed. The included manifests
+record formal output identities and source-file hashes.
 
 ## Result Map
 

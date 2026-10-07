@@ -13,7 +13,7 @@ new git history. It is not a fork of the development repository.
   Online Retail II evaluation, and the walkthrough case.
 - Aggregate outputs and public manifests needed to understand the reported
   tables and sensitivity results.
-- De-identified product-level inputs for the cross-dataset evidence-increment
+- Redacted product-level inputs for the cross-dataset evidence-increment
   synthesis.
 - Tests for the solver, relation laws, data adapters, result pairing, cost
   components, and released walkthrough artifacts.
@@ -22,10 +22,8 @@ new git history. It is not a fork of the development repository.
 
 - Raw third-party datasets.
 - Manuscript source, PDFs, LaTeX build files, and submission packages.
-- Row-level outputs that retain public product codes, competition item IDs, or
-  other identifiers unsuitable for redistribution.
-- Internal review notes, development archives, scoring ledgers, audit memos, and
-  revision plans.
+- Full row-level evaluation outputs derived from third-party datasets.
+- Development-only working records and obsolete exploratory branches.
 
 ## Provenance Retained
 
@@ -39,4 +37,6 @@ formal results:
 - retrospective pseudo-launch design and reused populations;
 - dataset-specific global-quantile interfaces.
 
-These notes are research provenance, not a separate audit report.
+The UCI and Favorita role manifests retain source catalog item keys required to
+reconstruct the frozen assignments. The compact forest-plot inputs instead use
+stable redacted product keys.

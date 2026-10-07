@@ -1,9 +1,4 @@
-"""Targeted PaperJury enhancement analyses.
-
-This module adds only the prespecified strong-baseline, temporal-sampler, metric-
-influence, candidate-reproducibility, and multiplicity checks.  It deliberately
-reuses the frozen target population and matched operational grid.
-"""
+"""Global and structural baselines on the frozen target populations and grids."""
 
 from __future__ import annotations
 

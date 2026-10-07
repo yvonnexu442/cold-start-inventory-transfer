@@ -1,0 +1,62 @@
+status: SYNTHETIC_FROZEN_BEFORE_EXECUTION_AND_UCI_METHODS_FROZEN_BEFORE_CONFIRMATION
+frozen_at: 2026-10-03
+support_semantics:
+  stored_fields: [n_history, n_positive_history, n_effective_windows, n_simulation_atoms]
+  derived_fields: [n_positive_simulation_atoms]
+  contraction_occurrence: n_effective_windows
+  contraction_magnitude: n_positive_history
+  simulation_atoms_are_evidence: false
+training:
+  random_candidates: 96
+  anchors_original: 4
+  relation_candidates: 97
+  shortlist: 12
+  original_policy_objective: realized_y_normalized_cost_plus_0.10_probability_terms
+  relation_learner_objective: cohort_median_scaled_cost_plus_0.10_probability_terms
+synthetic:
+  seeds: [20261201, 20261207, 20261213, 20261219, 20261231]
+  relations: [shared, distinct]
+  observations: [clean, weak_metadata, reduced_history]
+  paired_latent_tasks: true
+  train_targets: 120
+  validation_targets: 60
+  confirmation_targets: 80
+  donors: 8
+  full_history_periods: 48
+  reduced_history_periods: 24
+  horizon: 4
+  scenario_atoms: 80
+  shortage_holding_ratio: 5
+  metadata_noise_sd: {clean: 0.10, weak_metadata: 1.20}
+  ordinary_features: [overall_similarity, donor_event_rate, n_positive_history, positive_mean]
+  learned_relation_features: [overall_similarity, observed_coordinate_0_relation, observed_coordinate_1_relation]
+  generator_identity_available_to_learners: false
+  diagnostics:
+    - true_generator_oracle
+    - latent_weight_empirical_diagnostic
+    - structure_informed_diagnostic
+uci_confirmation_v3:
+  source_split_seed: 20261002
+  prior_assigned_products: 780
+  confirmation_products: 120
+  selection: next_sha256_ordered_eligible_products_after_prior_assignments
+  donor_products: original_development_360_only
+  validation_products: original_validation_120_only
+  policy_development_products: 120
+  cutoffs: [78, 91]
+  demand_windows_weeks: [2, 4]
+  shortage_holding_ratios: [2, 5, 10]
+  policy_seeds: [20260930, 20261011, 20261023, 20261037, 20261051]
+  target_history_used: false
+  prior_120_confirmation_status: reused_evaluation
+  methods_frozen_before_confirmation:
+    - single_donor
+    - complete_uniform
+    - complete_similarity
+    - shared_hurdle
+    - factorized_original
+    - shared_similarity_residual
+    - factorized_similarity_residual
+    - global_quantile
+    - zig_mc_catboost
+  relation_learner_status: not_promoted_after_synthetic_development

@@ -5,7 +5,7 @@
   "factorized_manifest": "factorized_manifest.json",
   "global_manifest": "corrected_global_manifest.json",
   "search_sufficiency_record": "search_sufficiency_summary.csv",
-  "temporal_boundary_record": "temporal_boundary_audit.csv",
+  "temporal_boundary_check": "validated in the local row-level run; detailed rows are not redistributed",
   "metadata_multiseed_record": "metadata_degradation_multiseed_summary.csv",
   "candidate_budget": {
     "fixed_anchors": 4,
@@ -67,6 +67,6 @@
       "MAN": 13500
     }
   },
-  "legacy_result_status": "superseded_not_for_current_claims",
+  "legacy_result_status": "superseded_by_the_listed_authoritative_sources",
   "evaluation_population": "reused_frozen_targets"
 }

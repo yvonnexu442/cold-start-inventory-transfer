@@ -1,9 +1,9 @@
-# Favorita untouched-confirmation result
+# Favorita pre-specified external evaluation
 
 ## Evidence identity
 
-- The dataset and product population had no repository or outcome-use history
-  before the protocol commit `04cf0e9`.
+- The dataset and product population were selected before outcome evaluation in
+  protocol commit `04cf0e9`.
 - The observation-window feasibility amendment (`1470118`) occurred before
   policy fitting or outcome scoring.
 - The first complete execution used row positions instead of `item_nbr` for
@@ -37,10 +37,10 @@ mixtures have materially higher service point estimates (0.950 and 0.951 versus
 control by 1,065.28 (-11.5%), but the interval [-2,385.15, 485.39] spans zero.
 It clearly improves on single-donor transfer (-1,695.16; [-2,952.28, -605.81]).
 
-## Frozen triage
+## Interpretation
 
-This is **Confirmation C**. The isolated population supports the strategy-level
-empirical contribution: global prediction and complete multi-donor transfer are
-strong practical policies, and aggregation clearly improves on a single donor.
-It does not independently confirm a competitive or matched component-specific
-gain. The cost-service ordering also reinforces the need to report both metrics.
+The isolated population supports the strategy-level empirical contribution:
+global prediction and complete multi-donor transfer are strong practical
+policies, and aggregation clearly improves on a single donor. The intervals do
+not establish a competitive or matched component-specific gain in this
+population. The cost-service ordering also motivates reporting both metrics.

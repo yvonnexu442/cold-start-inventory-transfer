@@ -306,7 +306,7 @@ def main() -> None:
     summary = summary.merge(_bootstrap(result, int(cfg["statistics"]["bootstrap_repetitions"]), 20261002), on="method")
     summary.to_csv(out / "uci_online_retail_ii_external_summary.csv", index=False)
     manifest = {"status": "completed", "protocol_commit": "55f746f",
-                "data_audit": panel.audit, "split_counts": split.role.value_counts().to_dict(),
+                "data_summary": panel.audit, "split_counts": split.role.value_counts().to_dict(),
                 "evaluation_rows": len(result), "matched_rows_per_method": result.groupby("method").size().to_dict(),
                 "vocabulary_size": len(vectorizer.vocabulary_), "svd_components": int(svd.n_components),
                 "elapsed_seconds": time.time() - started, "test_used_for_tuning": False,

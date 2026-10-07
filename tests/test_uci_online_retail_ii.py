@@ -3,7 +3,10 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from cold_start_replenishment.data.uci_online_retail_ii import OnlineRetailIIPanel, frozen_product_split
+from cold_start_replenishment.data.uci_online_retail_ii import (
+    OnlineRetailIIPanel,
+    frozen_product_split,
+)
 
 
 def test_frozen_split_is_deterministic_and_disjoint() -> None:

@@ -57,7 +57,7 @@ from cold_start_replenishment.inventory.newsvendor import (
 
 SEEDS = (20260930, 20261011, 20261023, 20261037, 20261051)
 POLICY_DEVELOPMENT_TARGETS = 60
-CORRECTED_AUDIT_TARGETS = 250
+CORRECTED_EVALUATION_TARGETS = 250
 
 
 def _population(dataset, full):
@@ -706,7 +706,7 @@ def main() -> None:
             ROOT / f"outputs/full_scale/checkpoints/{dataset.name.lower()}_reliability.parquet"
         )
         targets, eligible = _population(dataset, full)
-        targets = np.asarray(targets[: min(CORRECTED_AUDIT_TARGETS, len(targets))])
+        targets = np.asarray(targets[: min(CORRECTED_EVALUATION_TARGETS, len(targets))])
         # Factorized transfer uses the frozen retrieval rows and their metadata
         # similarity/support summaries, not the nonlinear reliability column.
         target_ids = {
@@ -788,7 +788,7 @@ def main() -> None:
                 "candidate_count_random": int(v3["factorized_transfer"]["random_candidate_count"]),
                 "candidate_count_fixed_anchors": 4,
                 "policy_development_targets_per_dataset_cutoff": POLICY_DEVELOPMENT_TARGETS,
-                "corrected_audit_targets_per_dataset": CORRECTED_AUDIT_TARGETS,
+                "corrected_evaluation_targets_per_dataset": CORRECTED_EVALUATION_TARGETS,
                 "cutoffs": {name: full["datasets"][name]["cutoffs"] for name in ("MAN", "BRAF")},
                 "clean_operating_grid": {
                     "lead_time_regimes": ["native_capped", "half_native_sensitivity"],

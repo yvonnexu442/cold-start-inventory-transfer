@@ -11,6 +11,7 @@ strict controls, search sensitivity, operating-condition summaries, cost
 decomposition, and the de-identified cross-dataset evidence-increment inputs.
 
 ```bash
+python -m pip install -e ".[dev,published-baseline]"
 python scripts/plot_evidence_increment_synthesis.py
 pytest --no-cov
 ```
@@ -32,12 +33,17 @@ Full reruns require local copies of the MAN/BRAF, Online Retail II, and
 Corporacion Favorita datasets. The raw files are not redistributed here; see
 `docs/dataset_download_instructions.md`.
 
-The formal entry points are listed in `README.md`. Some downstream summaries
-require local row-level parquet outputs under `outputs/runs/` or dataset-specific
-row artifacts that are intentionally omitted from the public snapshot. When
-those artifacts are absent, use the included aggregate outputs and manifests to
-inspect the submitted evidence record rather than treating a summary-only check
-as a full rerun.
+The formal entry points are listed in `README.md`. For MAN/BRAF, first run
+`python scripts/generate_service_parts_checkpoints.py --dataset all`. It reads
+the source workbooks through the frozen `configs/full_scale.yaml` protocol and
+writes `outputs/full_scale/checkpoints/man_reliability.parquet` and
+`braf_reliability.parquet`, together with the companion results, calibration,
+cutoff, scenario, and status files consumed downstream. Then run the service-
+parts, retail, strict-control, and summary commands in the README order.
+
+Full execution requires the original datasets and can be computationally
+substantial. Without those files, the included aggregate outputs and manifests
+support the summary-and-figure path but do not constitute a full training rerun.
 
 ## Target-Time Decision Procedure
 
@@ -132,8 +138,7 @@ Included:
 - scripts/configurations for the main baselines, learned transfer, strict
   control, search sensitivity, external populations, operating-condition
   summaries, cost decomposition, and walkthrough;
-- aggregate outputs, manifests, and de-identified product-level forest-plot
-  inputs;
+- aggregate outputs, manifests, and redacted product-level forest-plot inputs;
 - tests that exercise the shared solver, relation laws, data adapters, result
   pairing, and released artifacts.
 
@@ -143,5 +148,8 @@ Excluded:
 - manuscript LaTeX, PDFs, and paper build products;
 - row-level outputs with public product identifiers or third-party competition
   item identifiers;
-- internal revision notes, claim ledgers, reviewer simulations, and development
-  archives.
+- development-only working records and obsolete exploratory branches.
+
+The released UCI and Favorita role manifests retain public catalog item keys so
+that the frozen product assignments can be reconstructed from the original
+datasets. Other released product-level figure inputs use stable redacted keys.

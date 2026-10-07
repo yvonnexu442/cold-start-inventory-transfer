@@ -1,7 +1,7 @@
 {
   "status": "completed",
   "protocol_commit": "55f746f",
-  "data_audit": {
+  "data_summary": {
     "raw_rows": 1067371,
     "exact_duplicate_rows_removed": 12133,
     "cancelled_rows_excluded": 19433,
