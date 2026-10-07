@@ -1,0 +1,53 @@
+{
+  "schema": "ai-darld-v3-evidence-increment-synthesis-v1",
+  "config": "configs/evidence_increment_synthesis.json",
+  "config_sha256": "2b311f01bf6e75572c39c59e9e2f1866cc0f299ca8fb332dad3a16ecea0ce49c",
+  "generator": "scripts/plot_evidence_increment_synthesis.py",
+  "generator_sha256": "3b6f8dbd61b4de001b25e43c44ee3433a6e75924908b1c39737aa98e08010642",
+  "bootstrap_draws": 5000,
+  "bootstrap_seed": 20261004,
+  "estimand": "100 * (mean_cost_first - mean_cost_comparator) / mean_cost_comparator",
+  "interval": "target-product clustered percentile bootstrap; all repeated evaluation contexts retained",
+  "sign_convention": "negative favors the first policy named in each panel",
+  "compact_source": "outputs/ai_darld_v3/evidence_increment_synthesis/product_level_cost_inputs.csv",
+  "source_sha256": {
+    "outputs/ai_darld_v3/evidence_increment_synthesis/product_level_cost_inputs.csv": "90819e0aa69e347cebaae129b4ce2d174098f6c59ad0fd6936470f04a902aa3a"
+  },
+  "outputs": {
+    "relative_cost_contrasts.csv": "d739b9bec27cc6f04f616d6eedc94079754942b9e54d1d6f6fa1fd1dc82ae01b",
+    "bootstrap_draw_summary.csv": "c9214971b335fdd105c9e0bbc8fcfa7bc94f42f66ebd244f1503ebcfa0836eb8",
+    "outputs/ai_darld_v3/evidence_increment_synthesis/evidence_increment_forest.pdf": "18b994e35158682aa09b40ca42ced5434f9488d8fbb3cae7353ca11e89c14635",
+    "outputs/ai_darld_v3/evidence_increment_synthesis/evidence_increment_forest.png": "92e0516ef17aa7bb0d197e31419de62709cc19635f2f70b1bb0af481403f77a8",
+    "outputs/ai_darld_v3/evidence_increment_synthesis/evidence_increment_forest.svg": "a52db523ab8b41f45df7266094f936eaceb27ccfbf63d695f83a1dc71cb7cc5d",
+    "evidence_increment_forest.alignment.json": "f2ee766225727a2d26bee6cdd4585b47d976e487ca8ee162641bf287bf8f96b3"
+  },
+  "coverage": {
+    "panels": [
+      "A",
+      "B",
+      "C"
+    ],
+    "datasets": [
+      "BRAF",
+      "MAN",
+      "UCI",
+      "Favorita"
+    ],
+    "contrasts": 12
+  },
+  "figure_contract": {
+    "core_conclusion": "The evaluations separate aggregation, adaptation, and component-configuration increments without implying a universal ranking.",
+    "results_question": "Which controlled increment is supported in each evaluation population?",
+    "archetype": "compact quantitative grid",
+    "backend": "Python/Matplotlib",
+    "final_size_inches": [
+      3.35,
+      4.05
+    ],
+    "panel_map": {
+      "A": "multi-donor aggregation",
+      "B": "learned adaptation",
+      "C": "component-specific configuration"
+    }
+  }
+}

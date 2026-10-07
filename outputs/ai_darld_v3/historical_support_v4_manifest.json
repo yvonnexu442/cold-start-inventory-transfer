@@ -1,0 +1,82 @@
+{
+  "seeds": [
+    20260930,
+    20261011,
+    20261023,
+    20261037,
+    20261051
+  ],
+  "manifest_schema": "historical-support-v4-100candidate",
+  "solver": "exact_weighted_empirical_moq_minimum_fixed_cost_v2",
+  "distribution_features": "horizon_consistent_occurrence_positive_size_raw_support_v3",
+  "support_interface": "occurrence contraction uses raw effective historical windows; magnitude contraction uses raw positive historical periods; simulation atoms are recorded separately and do not change contraction",
+  "added_policy": "component-specific residual scores around complete-similarity anchor",
+  "target_feature_scope": "decision_time_static_metadata_only",
+  "python": "3.11.15",
+  "numpy": "2.4.6",
+  "pandas": "3.0.5",
+  "scikit_learn": "1.9.0",
+  "catboost": "1.2.10",
+  "training_scenarios": 120,
+  "evaluation_scenarios": 300,
+  "candidate_count_total": 100,
+  "candidate_count_random": 96,
+  "candidate_count_fixed_anchors": 4,
+  "policy_development_targets_per_dataset_cutoff": 60,
+  "corrected_audit_targets_per_dataset": 250,
+  "cutoffs": {
+    "MAN": [
+      96,
+      108,
+      120
+    ],
+    "BRAF": [
+      48,
+      54,
+      60
+    ]
+  },
+  "clean_operating_grid": {
+    "lead_time_regimes": [
+      "native_capped",
+      "half_native_sensitivity"
+    ],
+    "shortage_holding_ratios": [
+      2,
+      5,
+      10
+    ],
+    "capacity_regimes": [
+      "unconstrained",
+      "medium",
+      "tight"
+    ]
+  },
+  "degradation_operating_slice": "native_capped, shortage_holding_ratio=5, unconstrained",
+  "corrected_evaluation_scope": "full balanced clean grid plus frozen degradation slice",
+  "perturbations": [
+    "donor_history_half",
+    "remove_top_similarity",
+    "within_pool_similarity_perturbation",
+    "metadata_e2e_low",
+    "metadata_e2e_high"
+  ],
+  "metadata_perturbation_scope": {
+    "within_pool_similarity_perturbation": "retrieval set held fixed",
+    "metadata_e2e_low": "raw target fields perturbed before retrieval; frozen model",
+    "metadata_e2e_high": "raw target fields perturbed before retrieval; frozen model"
+  },
+  "metadata_missing_fallback": "eligible-donor median for numeric fields; __MISSING__ for emptied text",
+  "evaluation_population": "reused_frozen_targets",
+  "superseded_evidence": [
+    "round_unconstrained_quantile_then_capacity_clip",
+    "single_period_occurrence_feature",
+    "legacy_full_grid_outputs_before_2026_10_01"
+  ],
+  "dataset_runs_started_at": "2026-10-03T02:18:21-07:00",
+  "braf_checkpoint_completed_at": "2026-10-03T04:31:02-07:00",
+  "man_checkpoint_completed_at": "2026-10-03T04:41:54-07:00",
+  "parallel_wall_runtime_seconds": 8613,
+  "aggregation_runtime_seconds": 29.180891036987305,
+  "runtime_note": "BRAF and MAN were executed in parallel; timestamps are the observed process start and checkpoint modification times."
+}

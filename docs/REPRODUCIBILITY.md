@@ -1,0 +1,147 @@
+# Reproducibility Notes
+
+This document records the public reproduction path for the released experiment
+snapshot. It separates checks that can be run from included outputs from full
+training and evaluation steps that require the original datasets.
+
+## Quick Start From Included Outputs
+
+The included aggregate outputs are enough to inspect the principal tables,
+strict controls, search sensitivity, operating-condition summaries, cost
+decomposition, and the de-identified cross-dataset evidence-increment inputs.
+
+```bash
+python scripts/plot_evidence_increment_synthesis.py
+pytest --no-cov
+```
+
+The plotting command recomputes:
+
+- `outputs/ai_darld_v3/evidence_increment_synthesis/relative_cost_contrasts.csv`
+- `outputs/ai_darld_v3/evidence_increment_synthesis/bootstrap_draw_summary.csv`
+- `outputs/ai_darld_v3/evidence_increment_synthesis/evidence_increment_forest.pdf`
+- `outputs/ai_darld_v3/evidence_increment_synthesis/manifest.json`
+
+It uses only
+`outputs/ai_darld_v3/evidence_increment_synthesis/product_level_cost_inputs.csv`,
+whose product identifiers are redacted.
+
+## Full Training and Evaluation From Raw Data
+
+Full reruns require local copies of the MAN/BRAF, Online Retail II, and
+Corporacion Favorita datasets. The raw files are not redistributed here; see
+`docs/dataset_download_instructions.md`.
+
+The formal entry points are listed in `README.md`. Some downstream summaries
+require local row-level parquet outputs under `outputs/runs/` or dataset-specific
+row artifacts that are intentionally omitted from the public snapshot. When
+those artifacts are absent, use the included aggregate outputs and manifests to
+inspect the submitted evidence record rather than treating a summary-only check
+as a full rerun.
+
+## Target-Time Decision Procedure
+
+All policies produce a finite demand law at the target-time information
+boundary. The common solver then evaluates feasible order quantities under the
+same holding cost, shortage cost, fixed-order cost, minimum-order quantity,
+capacity when present, and zero-action option.
+
+The global prediction baseline does not stop at a single critical quantile in
+the formal constrained evaluations. It uses dataset-level quantile levels to
+build an interpolated finite scenario law, with endpoint handling at the grid
+edges, and passes that scenario law with uniform scenario weights into the same
+solver as the donor-transfer policies. A single critical quantile is the
+closed-form simplification only for an unconstrained newsvendor case without the
+additional fixed-order, MOQ, capacity, and zero-action comparisons used here.
+
+## Original Configuration Versus Strict Coefficient-Untying
+
+The complete component-specific configuration and the matched shared
+configuration differ in more than coefficient tying. Their comparison includes
+the full design choices in the frozen configuration, including scoring features
+and shrinkage behavior.
+
+The strict coefficient-untying control isolates one narrower question: under a
+common feature set, common contraction rule, common candidate protocol, and
+common evaluation interface, what changes when occurrence and conditional-
+positive relation coefficients are untied? The corresponding outputs are under
+`outputs/ai_darld_v3/strict_shared_separate_corrected_v2/`.
+
+## Search Budget and Actual Computation
+
+The strict search-sensitivity run compares nominal candidate budgets while
+recording the actual candidate accounting. The separate model has greater
+effective parameter capacity, and tied candidates are shared through the nested
+candidate stream. The search-sensitivity outputs are therefore interpreted as
+finite-search sensitivity, not as a universal separation advantage.
+
+Relevant files:
+
+- `configs/strict_search_stability_v1.yaml`
+- `outputs/ai_darld_v3/strict_search_stability_v1/ensemble_contrasts.csv`
+- `outputs/ai_darld_v3/strict_search_stability_v1/seed_contrasts.csv`
+- `outputs/ai_darld_v3/strict_search_stability_v1/fit_selection.csv`
+
+## Product-Clustered Intervals
+
+Reported paired intervals resample target products while retaining each
+product's repeated evaluation contexts. They quantify uncertainty over the
+sampled target products within the frozen retrospective grid. They do not
+represent uncertainty over future organizations, deployment frequencies, or
+unobserved datasets.
+
+## Favorita Product-Identifier Correction
+
+The Favorita execution uses the corrected item-identifier split and preserves
+the pre-specified evaluation protocol: development, validation, and confirmation
+roles are deterministic; raw competition data are not redistributed; and source
+hashes are recorded in
+`outputs/ai_darld_v3/favorita_confirmation_v1/run_manifest.json`.
+
+The correction concerns product identity handling. It does not convert the
+retrospective confirmation population into a real deployment study.
+
+## Retrospective Evaluation and Reused Populations
+
+All evaluations are retrospective pseudo-launch studies. They test how policies
+would act at a zero-history cutoff using historical donors available before the
+target outcome window. They do not validate an automatic policy selector or a
+production deployment.
+
+Some strict and sensitivity summaries reuse fixed populations to isolate the
+comparison under study. This reuse is documented in the corresponding manifests
+and should be considered when comparing intervals across result families.
+
+## Dataset-Specific Global-Quantile Interfaces
+
+The global prediction baseline is dataset-specific only through the empirical
+training population used to form the quantile grid and the operational
+constraints supplied to the common solver. The decision interface is shared:
+quantile grid to finite scenario law, then exact expected-cost comparison over
+feasible actions.
+
+The included aggregate output for this baseline is
+`outputs/ai_darld_v3/corrected_method_summary.csv`, with comparison intervals in
+`outputs/ai_darld_v3/corrected_target_clustered_comparisons.csv`.
+
+## Public Snapshot Scope
+
+Included:
+
+- formal method code needed by the released scripts;
+- scripts/configurations for the main baselines, learned transfer, strict
+  control, search sensitivity, external populations, operating-condition
+  summaries, cost decomposition, and walkthrough;
+- aggregate outputs, manifests, and de-identified product-level forest-plot
+  inputs;
+- tests that exercise the shared solver, relation laws, data adapters, result
+  pairing, and released artifacts.
+
+Excluded:
+
+- raw datasets and third-party archives;
+- manuscript LaTeX, PDFs, and paper build products;
+- row-level outputs with public product identifiers or third-party competition
+  item identifiers;
+- internal revision notes, claim ledgers, reviewer simulations, and development
+  archives.

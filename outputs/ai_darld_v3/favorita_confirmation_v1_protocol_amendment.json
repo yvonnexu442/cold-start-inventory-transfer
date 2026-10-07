@@ -1,0 +1,19 @@
+{
+  "schema": "favorita-confirmation-v1-protocol-amendment",
+  "reason": "The first scoring attempt stopped before policy fitting or outcome scoring because the original 2016-07-19 calendar start supplied only 317 cutoff-visible days at the 2017-05-31 cutoff, violating the frozen 365-day history requirement.",
+  "change": {
+    "observation_calendar_start_before": "2016-07-19",
+    "observation_calendar_start_after": "2016-06-01",
+    "required_history_days_unchanged": 365,
+    "cutoffs_unchanged": ["2017-05-31", "2017-07-18"],
+    "methods_metrics_roles_and_hypotheses_unchanged": true
+  },
+  "timing": {
+    "archive_schema_seen": true,
+    "aggregate_preprocessing_diagnostic_seen": true,
+    "policy_fitting_started": false,
+    "confirmation_outcomes_scored": false,
+    "method_rankings_seen": false
+  },
+  "scientific_effect": "The amendment restores the preregistered fixed-history design without changing a model, comparison, cohort rule, metric, or result-dependent choice."
+}

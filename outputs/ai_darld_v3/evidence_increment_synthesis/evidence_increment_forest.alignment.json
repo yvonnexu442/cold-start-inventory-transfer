@@ -1,0 +1,30 @@
+{
+  "schema": "public-matplotlib-panel-alignment-v1",
+  "axes": [
+    {
+      "axis_index": 0,
+      "x0": 0.19,
+      "y0": 0.738077,
+      "x1": 0.99,
+      "y1": 0.94
+    },
+    {
+      "axis_index": 1,
+      "x0": 0.19,
+      "y0": 0.419038,
+      "x1": 0.99,
+      "y1": 0.620962
+    },
+    {
+      "axis_index": 2,
+      "x0": 0.19,
+      "y0": 0.1,
+      "x1": 0.99,
+      "y1": 0.301923
+    }
+  ],
+  "tolerance_pt": 1.5,
+  "gutter_tolerance_pt": 1.5,
+  "require_panel_labels": true,
+  "strict": true
+}

@@ -1,0 +1,31 @@
+{
+  "analysis_id": "operating_condition_input_quality_v1",
+  "evidence_role": "exploratory_stratified_analysis_of_existing_formal_outputs",
+  "config": "configs/operating_condition_input_quality_v1.yaml",
+  "config_sha256": "98f86b2976ed20a5f19176d4c61ba053047def66f8f13ed210e9edeba74d7aab",
+  "inputs": {
+    "outputs/runs/ai_darld_v3/historical_support_v4_authority_results.parquet": "a1b98dd8e623dc2f3baf6e4a909d3829417563907804e586e70f1921fd7c50fd",
+    "outputs/runs/ai_darld_v3/historical_support_v4_results.parquet": "a81613097b36676c2d90acc4e4cbf271322433176f3a525d9c7cf13b2d3b26c4"
+  },
+  "outputs": {
+    "outputs/ai_darld_v3/operating_condition_input_quality_v1/ratio_stratified.csv": "ebb7dca48f0d61b105ff3416da301aaab1c44cb15b9b4b051deca7e93744eb83",
+    "outputs/ai_darld_v3/operating_condition_input_quality_v1/input_quality_sensitivity.csv": "6494de2a2199da7c651827ce129c36a4ce3ddee583034727ff9118d90ee3f02d"
+  },
+  "uncertainty": {
+    "method": "target_product_clustered_percentile_bootstrap",
+    "draws": 4000,
+    "seed": 20261006,
+    "interval": [
+      0.025,
+      0.975
+    ],
+    "conditioning": "existing_fitted_ensemble"
+  },
+  "ratio_rows": 6,
+  "degradation_rows": 20,
+  "notes": [
+    "No policy was refit.",
+    "Intervals condition on the existing fitted ensemble.",
+    "Repeated evaluation contexts remain grouped within target product."
+  ]
+}

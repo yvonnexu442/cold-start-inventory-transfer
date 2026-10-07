@@ -1,0 +1,7 @@
+dataset,shortage_holding_ratio,first_policy,comparator,cost_difference,ci_low,ci_high,first_service,comparator_service,first_mean_order,comparator_mean_order,products,matched_rows,bootstrap_draws,bootstrap_seed
+BRAF,2,factorized_similarity_residual,similarity_complete,-0.3234837164,-1.000386514,0.4565219049,0.7602226233,0.7906864344,3.054666667,5.1435,250,4500,4000,364766362
+BRAF,5,factorized_similarity_residual,similarity_complete,-2.35335955,-4.530470488,-0.04798882604,0.8198143866,0.8403885604,6.206833333,11.37611111,250,4500,4000,494138490
+BRAF,10,factorized_similarity_residual,similarity_complete,-5.789070012,-10.55412787,-1.25641739,0.8383518597,0.8505840255,9.975888889,18.036,250,4500,4000,1511664405
+MAN,2,factorized_similarity_residual,similarity_complete,9.156755994,6.519486997,11.89071752,0.4879026222,0.6456072914,10.76726933,23.98186089,250,4500,4000,1940012362
+MAN,5,factorized_similarity_residual,similarity_complete,25.7441276,18.18499193,33.99718961,0.6513113014,0.7313781353,22.81327396,45.72452841,250,4500,4000,1444688304
+MAN,10,factorized_similarity_residual,similarity_complete,63.32405594,40.08759308,88.52523511,0.7043799794,0.7617031052,32.87655741,74.40046781,250,4500,4000,2989618053

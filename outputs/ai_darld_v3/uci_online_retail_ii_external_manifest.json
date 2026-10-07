@@ -1,0 +1,35 @@
+{
+  "status": "completed",
+  "protocol_commit": "55f746f",
+  "data_audit": {
+    "raw_rows": 1067371,
+    "exact_duplicate_rows_removed": 12133,
+    "cancelled_rows_excluded": 19433,
+    "clean_transaction_rows": 1024996,
+    "products": 4731,
+    "weeks": 106,
+    "start_date": "2009-12-01",
+    "end_date": "2011-12-06"
+  },
+  "split_counts": {
+    "development": 360,
+    "external_test": 180,
+    "validation": 120
+  },
+  "evaluation_rows": 15120,
+  "matched_rows_per_method": {
+    "complete_similarity": 2160,
+    "complete_uniform": 2160,
+    "factorized_transfer": 2160,
+    "global_quantile": 2160,
+    "shared_hurdle": 2160,
+    "single_donor": 2160,
+    "zig_mc_catboost": 2160
+  },
+  "vocabulary_size": 396,
+  "svd_components": 24,
+  "elapsed_seconds": 2054.716649055481,
+  "test_used_for_tuning": false,
+  "global_quantile_occurrence_calibration": "not_applicable",
+  "interpretation": "external same-domain retraining; recorded weekly sales, not latent demand or verified launches"
+}

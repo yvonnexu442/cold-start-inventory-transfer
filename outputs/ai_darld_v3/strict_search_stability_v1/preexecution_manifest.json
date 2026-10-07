@@ -1,0 +1,20 @@
+{
+  "protocol_id": "strict_search_stability_v1",
+  "status": "frozen_before_supplementary_outcome_evaluation",
+  "source_cache_fix_commit": "992d738",
+  "config": "configs/strict_search_stability_v1.yaml",
+  "config_sha256": "c5f7a828ce481b1dcc7fe4d1f0678ccb20508db73b424ec2da645edae106601c",
+  "implementation_sha256": "d630a57ba65d555cb4b4951cf076677c95fba690ce45bddba2ae2cf6fb0c411b",
+  "service_runner_sha256": "0dbb8a9273111cb64527cce3dfd01b92ce1b1efce707941b5f7de9f8aa7a24c7",
+  "retail_runner_sha256": "ed7bb20004ba3df26f393d115b69834e52865d68ec2f8e25d90a7e02029e1c07",
+  "finalizer_sha256": "de9b0ea97b7df7397dd6c5198684b31e952cb40cf74ba71afa9c6a521fd540d9",
+  "budgets": [100, 200],
+  "populations": ["MAN", "BRAF", "UCI", "Favorita"],
+  "candidate_slots_equal_by_method": true,
+  "unique_candidates_equal_by_method": false,
+  "nested_model_family": true,
+  "nested_finite_candidate_set": true,
+  "shared_duplicate_slots_declared": true,
+  "duplicate_objective_memoization": "identical shared coefficient slots reuse the same deterministic training objective; actual unique evaluations are recorded",
+  "configuration_changes_after_outcome_inspection_permitted": false
+}

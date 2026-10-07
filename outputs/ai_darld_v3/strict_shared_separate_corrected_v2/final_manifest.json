@@ -1,0 +1,53 @@
+{
+  "status": "completed_four_population_frozen_protocol",
+  "config": "configs/strict_shared_separate_corrected_v2.yaml",
+  "config_sha256": "b913db11720bfe1936c5b4e65d942f9b49fe2598ccc891cbc5ec7851cc83666c",
+  "execution_implementation_sha256": "b69cae8fd4ac2afddc7480cc35c2c3a81508f43a61c6b8600d41b317bca19ed6",
+  "execution_service_runner_sha256": "b2417af8d03d09a1b5889b63c0766d2a788c5e7b60ea33341649aa54e048e728",
+  "execution_retail_runner_sha256": "7f5f23b31cbdba3c922d7fe78c33127e1dc66e54e45d3aa8c5ab5e883cf3a54a",
+  "preexecution_manifest_sha256": "1d7d83c0be897f52a80cfe48fd1a9a99d0abae7106855a61d215a2707a5388a5",
+  "inputs": {
+    "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/man_rows.parquet": "10cd6e23925a34276212da74f169740adace8cd3eee10072b2cf717e9530d5cc",
+    "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/braf_rows.parquet": "bcaf79e4cafcc22d409cc75eab8c7e2cf384a15c2e12735e4f957053e703e3d6",
+    "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/uci_rows.parquet": "2f783ec8a7deebccd6162f83991bd15fc8ca0de64736bb6c00cb7d983299a2dd",
+    "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/favorita_rows.parquet": "baf85288111e47467bdbc309cbd9c51fdb31f9ebc0ab12feca8a82fc93bcb5ca"
+  },
+  "fit_inputs": {
+    "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/man_fits.csv": "e02bfa457d322044f77d33a23171fb0261883a3e92673b02fc44afb514517fda",
+    "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/braf_fits.csv": "bb930f3c821806a44cf09e68532ae2cd9dec3b2db8f306700b832ba95f8c9b89",
+    "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/uci_fits.csv": "9164c9eaa37c06a8e1dc40bb2f6e46248aab71d25d165a5492b922d6e519e9ed",
+    "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/favorita_fits.csv": "3f3bf42d081e1351dd8f09459bcff531dcf13936402ced34ebee0464d2c9cab4"
+  },
+  "runtime_manifests": {
+    "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/run_manifest.json": "26e6c19ffd9624bbc6985faec96db0224ee74b35ae193462a42171e93424e779",
+    "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/retail_run_manifest.json": "812ecd9581583ed9337f4218b7ae4621037daaa2895a55386fd0105c9491e23a"
+  },
+  "datasets": [
+    "MAN",
+    "BRAF",
+    "UCI",
+    "Favorita"
+  ],
+  "pairing": "one-to-one on complete dataset-specific evaluation key",
+  "realized_demand_identity_checked": true,
+  "bootstrap": {
+    "unit": "target product with repeated contexts retained",
+    "cost_seed": 20261005,
+    "service_seed": 20261006,
+    "draws_by_dataset": {
+      "MAN": 4000,
+      "BRAF": 4000,
+      "UCI": 2000,
+      "Favorita": 5000
+    }
+  },
+  "parameter_count_identity_checked": true,
+  "superseded_result": "outputs/ai_darld_v3/strict_shared_separate_v1/paired_contrasts.csv",
+  "superseded_result_sha256": "d3aa8c287480b5121cf1f92159240a5ffd703b443e58983450387b82fd69fa89",
+  "fit_actions": {
+    "MAN": "refit",
+    "BRAF": "refit",
+    "UCI": "reuse_verified",
+    "Favorita": "reuse_verified"
+  }
+}

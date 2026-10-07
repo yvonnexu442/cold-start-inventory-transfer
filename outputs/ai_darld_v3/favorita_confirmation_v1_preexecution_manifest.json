@@ -1,0 +1,36 @@
+{
+  "schema": "favorita-confirmation-v1-preexecution-manifest",
+  "status": "FROZEN_BEFORE_ARCHIVE_OPENING_OR_OUTCOME_EVALUATION",
+  "starting_commit": "869907cfd3d7e42bc50c1b7dde08c5b1e6b97368",
+  "archive": "data/raw/favorita/favorita-grocery-sales-forecasting.zip",
+  "archive_size_bytes": 480014675,
+  "archive_sha256": "dfd22643758ca70d61874f79f9a4065a2d3e964fd012c6481796f5fa086d46af",
+  "official_source": "https://www.kaggle.com/competitions/favorita-grocery-sales-forecasting",
+  "official_rules": "https://www.kaggle.com/competitions/favorita-grocery-sales-forecasting/rules",
+  "license_interpretation": "Academic research is allowed under accepted competition rules; raw competition data must not be redistributed.",
+  "untouched_checks": {
+    "all_branches_searched": true,
+    "git_history_string_search": true,
+    "scripts_configs_reports_outputs_searched": true,
+    "prior_favorita_reference_found": false,
+    "archive_opened": false,
+    "archive_extracted": false,
+    "outcomes_inspected": false
+  },
+  "schema_contract": "configs/favorita_untouched_confirmation_schema_v1.json",
+  "schema_contract_sha256": "0248378613910b3a1391d81e9c2636569e2a9ae886e6b9188ea8c80d92e29366",
+  "protocol": "configs/favorita_untouched_confirmation_v1.yaml",
+  "protocol_sha256_original": "bdbcbbbf77790181a0922f67c81298abf01d81af841be8b9d56b17683f54c213",
+  "protocol_sha256_amended_before_scoring": "215379458ecc216ad67780dbefdba4f68b41d4adfb74ab78847fa2afa96a2da8",
+  "protocol_amendment": "outputs/ai_darld_v3/favorita_confirmation_v1_protocol_amendment.json",
+  "protocol_amendment_sha256": "0410547e97977e1cf96c1f8cbac846bf66733720c8356e70d2f3a1cee7f79c04",
+  "required_sequence": [
+    "commit_and_push_protocol",
+    "verify_protocol_commit",
+    "extract_archive_in_place_without_overwriting_archive",
+    "validate_schema_and_roles",
+    "fit_on_development_products",
+    "open_confirmation_outcomes_once",
+    "report_all_frozen_methods_and_triage"
+  ]
+}

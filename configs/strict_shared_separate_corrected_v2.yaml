@@ -1,0 +1,45 @@
+protocol_id: strict_shared_separate_corrected_v2
+status: frozen_before_corrected_outcome_evaluation
+frozen_at_utc: '2026-10-05T18:00:00Z'
+question: held-out decision value of coefficient untying after identity-safe task caching
+supersedes_output: outputs/ai_darld_v3/strict_shared_separate_v1
+features:
+  ordered: [metadata_similarity, donor_event_rate, log1p_raw_positive_support, positive_size_level]
+  preprocessing: within-task column z-score after exactly one log1p transform of raw positive support
+models:
+  strict_shared:
+    relation_coefficients: 4
+    occurrence_and_magnitude_coefficients: tied
+  strict_separate:
+    relation_coefficients: 8
+    occurrence_and_magnitude_coefficients: untied
+  common:
+    occurrence_calibration_intercept: 1
+    contraction_alpha_grid: [0.0, 0.25, 0.50, 0.75]
+    contraction_application: same alpha for occurrence and positive-size weights
+    candidates: {fixed: 4, random: 96, total: 100}
+    validation_shortlist_per_alpha: 12
+    calibration_weight: 0.10
+    occurrence_shift_grid: [-1.5, -1.25, -1.0, -0.75, -0.5, -0.25, 0.0, 0.25, 0.5, 0.75, 1.0, 1.25, 1.5]
+    training_objective: realized-demand-normalized exact decision cost plus 0.10 times Brier plus conditional-positive size error
+    evaluation_estimand: equally weighted raw realized inventory cost
+datasets:
+  MAN: {anchor: similarity_residual, bootstrap_draws: 4000, policy_seeds: [20260930, 20261011, 20261023, 20261037, 20261051], fit_action: refit}
+  BRAF: {anchor: similarity_residual, bootstrap_draws: 4000, policy_seeds: [20260930, 20261011, 20261023, 20261037, 20261051], fit_action: refit}
+  UCI: {anchor: similarity_residual, bootstrap_draws: 2000, policy_seeds: [20260930, 20261011, 20261023, 20261037, 20261051], fit_action: reuse_verified}
+  Favorita: {anchor: unanchored, bootstrap_draws: 5000, policy_seeds: [20260930, 20261011, 20261023, 20261037, 20261051], evidence_role: supplementary_reused_external_population, fit_action: reuse_verified}
+cache_correction:
+  atom_cache: weak task identity, identity validation, weak cleanup, read-only scenarios
+  order_cache: weak task identity, identity validation, value equality, weak cleanup
+fit_reuse_basis:
+  service_parts: worker processes received successive task subsets, so raw-id reuse cannot be excluded
+  retail: each worker retained one fixed training/validation task collection for its lifetime, so cached identities continued to name the same objects
+required_recalculation:
+  fits: [MAN, BRAF]
+  evaluation: [MAN, BRAF, UCI, Favorita]
+stopping_rule: complete all four corrected populations without changing scientific settings or reporting
+triage:
+  A: UCI interval excludes zero in favor of separate and at least one other population is directionally consistent or excludes zero
+  B: only UCI supports separate
+  C: mixed results or most intervals span zero
+  D: shared clearly outperforms separate

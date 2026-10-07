@@ -1,0 +1,63 @@
+analysis_id: operating_condition_input_quality_v1
+frozen_at: 2026-10-06T00:00:00-07:00
+status: prespecified_before_outcome_inspection
+purpose: >-
+  Summarize operating-cost-ratio and input-quality sensitivity from existing
+  formal service-parts evaluation rows without refitting any policy.
+
+authoritative_input:
+  path: outputs/runs/ai_darld_v3/historical_support_v4_authority_results.parquet
+  detailed_path: outputs/runs/ai_darld_v3/historical_support_v4_results.parquet
+  protocol: historical_support_v4_authority
+  datasets: [MAN, BRAF]
+  first_policy: factorized_similarity_residual
+  comparator: similarity_complete
+
+ratio_stratification:
+  shortage_to_holding_ratios: [2, 5, 10]
+  include_all_formal_cutoffs: true
+  include_all_formal_lead_time_regimes: true
+  include_all_formal_capacity_regimes: true
+  aggregation: equal_weight_per_matched_evaluation_row
+  outcomes:
+    - paired_mean_raw_cost_difference
+    - service_by_policy
+    - mean_order_quantity_by_policy
+  sign: first_policy_minus_comparator
+
+input_quality_sensitivity:
+  slice:
+    lead_time_regime: native_capped
+    shortage_to_holding_ratio: 5
+    capacity_regime: unconstrained
+  clean_condition: none
+  perturbations:
+    - donor_history_half
+    - remove_top_similarity
+    - within_pool_similarity_perturbation
+    - metadata_e2e_low
+    - metadata_e2e_high
+  policies:
+    - factorized_similarity_residual
+    - similarity_complete
+  outcome: paired_mean_raw_cost_change_from_slice_matched_clean
+  sign: perturbed_minus_clean
+
+pairing:
+  require_complete_common_keys: true
+  reject_duplicate_keys: true
+  retain_repeated_contexts_with_target: true
+  verify_realized_demand_identity: true
+
+uncertainty:
+  method: target_product_clustered_percentile_bootstrap
+  draws: 4000
+  seed: 20261006
+  interval: [0.025, 0.975]
+  conditioning: existing_fitted_ensemble
+
+interpretation:
+  evidence_role: exploratory_stratified_analysis_of_existing_formal_outputs
+  subgroup_difference_test: false
+  selection_rule_claim: false
+  independent_confirmation_claim: false

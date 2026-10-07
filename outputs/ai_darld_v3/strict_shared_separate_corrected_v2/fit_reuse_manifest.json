@@ -1,0 +1,56 @@
+{
+  "status": "verified_retail_fit_reuse",
+  "basis": "worker-global training and validation task collections remained alive for each worker lifetime",
+  "checkpoints": [
+    {
+      "checkpoint": "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/fit_checkpoints/uci_20260930_strict_separate.json",
+      "source": "outputs/ai_darld_v3/strict_shared_separate_v1/fit_checkpoints/uci_20260930_strict_separate.json",
+      "sha256": "e98686d4c491021369afa90fab6d0dcc25359a097a54c4361919c2c1a566fa13"
+    },
+    {
+      "checkpoint": "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/fit_checkpoints/uci_20260930_strict_shared.json",
+      "source": "outputs/ai_darld_v3/strict_shared_separate_v1/fit_checkpoints/uci_20260930_strict_shared.json",
+      "sha256": "aa3854b095fd570e4518a6cfb5df8d35d1bcca6116d9e357cc40cf4db6c77e51"
+    },
+    {
+      "checkpoint": "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/fit_checkpoints/uci_20261011_strict_separate.json",
+      "source": "outputs/ai_darld_v3/strict_shared_separate_v1/fit_checkpoints/uci_20261011_strict_separate.json",
+      "sha256": "eb852ed551d741a1855d42d14eee864baf627ff2fde52a7f11ca349dde005415"
+    },
+    {
+      "checkpoint": "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/fit_checkpoints/uci_20261011_strict_shared.json",
+      "source": "outputs/ai_darld_v3/strict_shared_separate_v1/fit_checkpoints/uci_20261011_strict_shared.json",
+      "sha256": "fa53f5a5a64f5905854203fe019f46e18971e370d303f5d7559d30cac5c689d0"
+    },
+    {
+      "checkpoint": "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/fit_checkpoints/uci_20261023_strict_separate.json",
+      "source": "outputs/ai_darld_v3/strict_shared_separate_v1/fit_checkpoints/uci_20261023_strict_separate.json",
+      "sha256": "087edc52e750085b4dc3b6bf25690f4e838d0857ec8a4dd3f2209aa38f051214"
+    },
+    {
+      "checkpoint": "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/fit_checkpoints/uci_20261023_strict_shared.json",
+      "source": "outputs/ai_darld_v3/strict_shared_separate_v1/fit_checkpoints/uci_20261023_strict_shared.json",
+      "sha256": "deb800fd280b2c6864395317242fbb947af0f31c5b9fa161207bc3a748735e86"
+    },
+    {
+      "checkpoint": "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/fit_checkpoints/uci_20261037_strict_separate.json",
+      "source": "outputs/ai_darld_v3/strict_shared_separate_v1/fit_checkpoints/uci_20261037_strict_separate.json",
+      "sha256": "9d53d69384317ee29ecc28c38f4998a8d25d75cb4affa08c559571cf77da82d9"
+    },
+    {
+      "checkpoint": "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/fit_checkpoints/uci_20261037_strict_shared.json",
+      "source": "outputs/ai_darld_v3/strict_shared_separate_v1/fit_checkpoints/uci_20261037_strict_shared.json",
+      "sha256": "78d6288bcdb62064ab031881c85602c06834e9b1fdb986f01d785fe0cfb5db92"
+    },
+    {
+      "checkpoint": "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/fit_checkpoints/uci_20261051_strict_separate.json",
+      "source": "outputs/ai_darld_v3/strict_shared_separate_v1/fit_checkpoints/uci_20261051_strict_separate.json",
+      "sha256": "632814b9c40b41f860f8cc1d912862ec317e5cd2f7a3b9ac007ce01a61beef7a"
+    },
+    {
+      "checkpoint": "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/fit_checkpoints/uci_20261051_strict_shared.json",
+      "source": "outputs/ai_darld_v3/strict_shared_separate_v1/fit_checkpoints/uci_20261051_strict_shared.json",
+      "sha256": "1e80f18439fc79a3f28d0d4586d6d4b2c0648ca3b148aee160997aa99db72d47"
+    }
+  ]
+}

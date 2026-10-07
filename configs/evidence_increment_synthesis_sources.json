@@ -1,0 +1,46 @@
+{
+  "datasets": {
+    "BRAF": {
+      "source_file": "outputs/runs/ai_darld_v3/historical_support_v4_authority_results.parquet",
+      "source_protocol": "formal service-parts authority; support-interface corrected",
+      "dataset_filter": "BRAF",
+      "cost_column": "total_cost",
+      "actual_column": "actual_demand",
+      "product_column": "target_id",
+      "key_columns": ["target_id", "cutoff", "lead_time_regime", "capacity_regime", "shortage_holding_ratio"],
+      "method_column": "method",
+      "method_map": {"complete_similarity": "similarity_complete", "single_donor": "single_complete", "component_specific_transfer": "factorized_similarity_residual", "matched_shared_relation": "shared_similarity_residual"}
+    },
+    "MAN": {
+      "source_file": "outputs/runs/ai_darld_v3/historical_support_v4_authority_results.parquet",
+      "source_protocol": "formal service-parts authority; support-interface corrected",
+      "dataset_filter": "MAN",
+      "cost_column": "total_cost",
+      "actual_column": "actual_demand",
+      "product_column": "target_id",
+      "key_columns": ["target_id", "cutoff", "lead_time_regime", "capacity_regime", "shortage_holding_ratio"],
+      "method_column": "method",
+      "method_map": {"complete_similarity": "similarity_complete", "single_donor": "single_complete", "component_specific_transfer": "factorized_similarity_residual", "matched_shared_relation": "shared_similarity_residual"}
+    },
+    "UCI": {
+      "source_file": "outputs/ai_darld_v3/uci_confirmation_v3_rows.parquet",
+      "source_protocol": "frozen UCI isolated-product evaluation v3",
+      "cost_column": "cost",
+      "actual_column": "actual",
+      "product_column": "target_id",
+      "key_columns": ["target_id", "cutoff", "horizon", "cost_ratio"],
+      "method_column": "method",
+      "method_map": {"complete_similarity": "complete_similarity", "single_donor": "single_donor", "component_specific_transfer": "factorized_similarity_residual", "matched_shared_relation": "shared_similarity_residual"}
+    },
+    "Favorita": {
+      "source_file": "outputs/ai_darld_v3/favorita_confirmation_v1/row_level_results.parquet",
+      "source_protocol": "pre-specified Favorita external evaluation; identifier-corrected execution",
+      "cost_column": "cost",
+      "actual_column": "actual",
+      "product_column": "target_id",
+      "key_columns": ["target_id", "cutoff", "horizon", "cost_ratio"],
+      "method_column": "method",
+      "method_map": {"complete_similarity": "complete_similarity", "single_donor": "single_donor", "component_specific_transfer": "component_specific_transfer", "matched_shared_relation": "matched_shared_relation"}
+    }
+  }
+}

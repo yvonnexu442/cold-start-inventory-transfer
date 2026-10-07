@@ -1,0 +1,35 @@
+{
+  "manifest_schema": "corrected-global-v1",
+  "solver": "exact_weighted_empirical_moq_minimum_fixed_cost_v2",
+  "targets_per_dataset": 250,
+  "methods": [
+    "global_quantile",
+    "group_empirical",
+    "zig_mc_catboost_adapted"
+  ],
+  "rows_by_dataset": {
+    "MAN": 40500,
+    "BRAF": 40500
+  },
+  "rolling_origins_per_part": 4,
+  "horizons": [
+    "native_capped",
+    "half_native_sensitivity"
+  ],
+  "cost_ratios": [
+    2,
+    5,
+    10
+  ],
+  "capacity_regimes": [
+    "unconstrained",
+    "medium",
+    "tight"
+  ],
+  "scenario_count": 300,
+  "catboost_version": "1.2.10",
+  "zig_gamma_shape": 2.0,
+  "zig_status": "CatBoost-adapted structural reproduction; public-study feature schema",
+  "evaluation_population": "reused_frozen_targets",
+  "runtime_seconds": 640.5103342533112
+}

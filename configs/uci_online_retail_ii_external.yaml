@@ -1,0 +1,68 @@
+status: FROZEN_BEFORE_EXTERNAL_TEST_EXECUTION
+frozen_at: 2026-10-02
+source:
+  url: https://archive.ics.uci.edu/dataset/502/online+retail+ii
+  archive: data/raw/uci_online_retail_ii/online+retail+ii.zip
+  archive_sha256: 572e36277c2390fbfde10664750731e0a86f55e33470d91919085f0408e67bfb
+  workbook: data/raw/uci_online_retail_ii/online_retail_II.xlsx
+  workbook_sha256: bcbe73b35f5b7babf197fb0cb983a11f5d9ff929078d4aa53d171b1f2df2e980
+frequency: weekly_recorded_sales
+interpretation: observed_purchase_quantity_not_unconstrained_latent_demand
+cleaning:
+  remove_exact_duplicates: true
+  exclude_cancelled_invoices: true
+  require_positive_quantity: true
+  require_positive_price: true
+  require_nonmissing_description: true
+  exclude_service_stock_codes: [POST, DOT, M, BANK_CHARGES, AMAZONFEE, CRUK, D, S, ADJUST, ADJUST2, C2]
+  catalog_proxy: earliest_valid_description
+cohort:
+  first_observed_week_at_most: 52
+  last_observed_week_at_least: 99
+  note: retrospective activity-span restriction; first transaction is not treated as launch
+split:
+  seed: 20261002
+  development_products: 360
+  validation_products: 120
+  external_test_products: 180
+  assignment: sha256_order_after_mechanical_cohort_filter
+  test_products_forbidden_from: [donors, pseudo_targets, vocabulary_fit, preprocessing_fit, hyperparameter_selection]
+tasks:
+  development_cutoffs: [52, 65]
+  external_cutoffs: [78, 91]
+  demand_windows_weeks: [2, 4]
+  shortage_holding_ratios: [2, 5, 10]
+  donors_per_target: 8
+  donor_empirical_windows: 40
+  minimum_order_quantity: null
+  capacity: null
+  fixed_order_cost: 0
+methods:
+  [single_donor, complete_uniform, complete_similarity, shared_hurdle,
+   factorized_transfer, global_quantile, zig_mc_catboost]
+policy:
+  seeds: [20260930, 20261011, 20261023, 20261037, 20261051]
+  random_candidates: 24
+  calibration_weight: 0.10
+global:
+  text_svd_components: 24
+  quantiles: [0.6666667, 0.8333333, 0.9090909]
+  max_iter: 160
+zig_mc:
+  iterations: 160
+  depth: 5
+  learning_rate: 0.05
+statistics:
+  cluster: product
+  bootstrap_repetitions: 2000
+  confidence_level: 0.95
+  tail_metric: target_level_cost_q90
+synthetic_mechanism:
+  status: FROZEN_BEFORE_EXECUTION
+  seeds: [20261002, 20261003, 20261004, 20261005, 20261006]
+  conditions: [shared_relevance, separate_relevance, separate_weak_metadata]
+  targets_per_condition: 160
+  donors: 8
+  history_periods: 48
+  horizon: 4
+  shortage_holding_ratio: 5

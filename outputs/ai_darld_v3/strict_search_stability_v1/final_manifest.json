@@ -1,0 +1,38 @@
+{
+  "status": "completed_prespecified_two_budget_sensitivity",
+  "config": "configs/strict_search_stability_v1.yaml",
+  "config_sha256": "c5f7a828ce481b1dcc7fe4d1f0678ccb20508db73b424ec2da645edae106601c",
+  "inputs": {
+    "outputs/ai_darld_v3/strict_search_stability_v1/budget_100/man_rows.parquet": "4064d5e2ab08cd00c0fbe0ecad21aff97ac9f74ca3c1b45d7a1a3c11a937771c",
+    "outputs/ai_darld_v3/strict_search_stability_v1/budget_100/man_seed_rows.parquet": "5aab46df6c49152a553ded8a09d4cc4af14951c777ff8f96e362b26d3b0cbecc",
+    "outputs/ai_darld_v3/strict_search_stability_v1/budget_100/man_fits.csv": "aee9abd02a0950eb14b7f3376e24f321612cf877c2965b0318399a02e71104f4",
+    "outputs/ai_darld_v3/strict_search_stability_v1/budget_100/braf_rows.parquet": "b69d80d345b341e59a4608c1b58a76db06521d1f3e14dfc27e3daa2bfdb03c97",
+    "outputs/ai_darld_v3/strict_search_stability_v1/budget_100/braf_seed_rows.parquet": "12b5bdcacf744594ac0e90d3ebd96fd2a88826b8c02cffcdf0f10e53f8433d8d",
+    "outputs/ai_darld_v3/strict_search_stability_v1/budget_100/braf_fits.csv": "119d902933f6bb2e1a95e2be27a312339b0c363a43f3d61e1a0761171240cb49",
+    "outputs/ai_darld_v3/strict_search_stability_v1/budget_100/uci_rows.parquet": "c6bbcdee3d46b43d17ffecd2394aafe5dc282b28f4ebc1d04f1dd85a9a827bab",
+    "outputs/ai_darld_v3/strict_search_stability_v1/budget_100/uci_seed_rows.parquet": "5332b36766481cedfba71e5a357c5e34e699442b99e06a28b314e5dd56d04155",
+    "outputs/ai_darld_v3/strict_search_stability_v1/budget_100/uci_fits.csv": "2a9859a3fe78830c0f60302b1ce08edc62c7ce2be0ea9790cfc49446b3b1b4b5",
+    "outputs/ai_darld_v3/strict_search_stability_v1/budget_100/favorita_rows.parquet": "670f1447a5af9244e81e34270debc23b49a319f0a235de54e4fc0199cd10b82c",
+    "outputs/ai_darld_v3/strict_search_stability_v1/budget_100/favorita_seed_rows.parquet": "9cccd3467ae2fd99745477f915116bb4312492d52e3ae18e0ea77ce96865d197",
+    "outputs/ai_darld_v3/strict_search_stability_v1/budget_100/favorita_fits.csv": "2a3b516917853c5fee62565d1476815c95e780e087d557821a088a8572ceb0d5",
+    "outputs/ai_darld_v3/strict_search_stability_v1/budget_200/man_rows.parquet": "446bf68bab8332c3b7a304e040351ca4eed71fba166b15fcba1d304387e1c4b6",
+    "outputs/ai_darld_v3/strict_search_stability_v1/budget_200/man_seed_rows.parquet": "a794cd74ba3be5e25e15dbb5e59756b4651ef5b6116308aaa4353234d4b6159d",
+    "outputs/ai_darld_v3/strict_search_stability_v1/budget_200/man_fits.csv": "7318252aed8f7e7959bfddba43c02c89eeae8a0e7cdd5fab7d14e2f844e58f6e",
+    "outputs/ai_darld_v3/strict_search_stability_v1/budget_200/braf_rows.parquet": "f0d15562bf2d57f3f73454e4b9aed4229ba3b761ed19c1851be0164f836e609d",
+    "outputs/ai_darld_v3/strict_search_stability_v1/budget_200/braf_seed_rows.parquet": "9d7247ef9081d2295d2e1c959ac8488098fefcd0f6612dffa100f84ea6272365",
+    "outputs/ai_darld_v3/strict_search_stability_v1/budget_200/braf_fits.csv": "4adfce1fd7a827bd70769b7234f0158f78a14c82eb4c0f906be7817d4dd8ed45",
+    "outputs/ai_darld_v3/strict_search_stability_v1/budget_200/uci_rows.parquet": "9352efd815cdabfb5594125b043e701f1a0d6e341efcfeb79fea15582a713d08",
+    "outputs/ai_darld_v3/strict_search_stability_v1/budget_200/uci_seed_rows.parquet": "e6878532bb8257934e317ce981db5d5895dc912f033af51e159f8f4e7ea64774",
+    "outputs/ai_darld_v3/strict_search_stability_v1/budget_200/uci_fits.csv": "6251e8a6857497caf2e2096cf90441f79ad3274cd1c6a1c2907eef79657b19b5",
+    "outputs/ai_darld_v3/strict_search_stability_v1/budget_200/favorita_rows.parquet": "8388993d340a23ffd91ac2438d201b255ebf3642db19a116b1401f1ac642d5ba",
+    "outputs/ai_darld_v3/strict_search_stability_v1/budget_200/favorita_seed_rows.parquet": "4811cb71490e42836f65bb6501437f4e6e2d3aad419851d5d0abe62c1fb95d39",
+    "outputs/ai_darld_v3/strict_search_stability_v1/budget_200/favorita_fits.csv": "fc1a63208a977fc8718dbd285827ad4178322b9c58b544ab21762f5d64890480"
+  },
+  "product_clustered_interval_scope": "fixed five-seed ensemble",
+  "training_randomness_scope": "reported separately in seed_contrasts.csv",
+  "candidate_set_nesting_checked": true,
+  "budgets": [
+    100,
+    200
+  ]
+}

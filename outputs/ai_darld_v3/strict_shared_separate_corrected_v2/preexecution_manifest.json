@@ -1,0 +1,22 @@
+{
+  "protocol_id": "strict_shared_separate_corrected_v2",
+  "status": "frozen_before_corrected_outcome_evaluation",
+  "source_parent_commit": "9bde34e893070d1378cbf7d3d65fb04f562b725d",
+  "config": "configs/strict_shared_separate_corrected_v2.yaml",
+  "config_sha256": "b913db11720bfe1936c5b4e65d942f9b49fe2598ccc891cbc5ec7851cc83666c",
+  "implementation_sha256": "b69cae8fd4ac2afddc7480cc35c2c3a81508f43a61c6b8600d41b317bca19ed6",
+  "service_runner_sha256": "b2417af8d03d09a1b5889b63c0766d2a788c5e7b60ea33341649aa54e048e728",
+  "retail_runner_sha256": "7f5f23b31cbdba3c922d7fe78c33127e1dc66e54e45d3aa8c5ab5e883cf3a54a",
+  "superseded_output": "outputs/ai_darld_v3/strict_shared_separate_v1",
+  "defect": "raw id(task) cache keys without object-identity validation or lifecycle cleanup",
+  "correction": "weak task references, identity validation, weak cleanup, immutable scenario arrays, and cached-value validation",
+  "fit_impact": {
+    "MAN": "refit because workers processed successive temporary task subsets",
+    "BRAF": "refit because workers processed successive temporary task subsets",
+    "UCI": "reuse only after hash and lifecycle verification because worker-global tasks remained alive",
+    "Favorita": "reuse only after hash and lifecycle verification because worker-global tasks remained alive"
+  },
+  "evaluation_action": "recompute every population",
+  "scientific_protocol_changes": false,
+  "configuration_changes_after_outcome_inspection_permitted": false
+}

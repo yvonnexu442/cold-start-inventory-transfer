@@ -1,0 +1,51 @@
+{
+  "status": "completed",
+  "protocol_commit": "04cf0e90fdb65d154fa73570851663e8581992b8",
+  "history_window_amendment_commit": "1470118",
+  "identifier_hash_correction_commit": "67c8d11",
+  "runner_sha256": "fcc2bd31e1320003ad5c7a19b743413eb220e2de860d832c87b3cde9c55284b9",
+  "row_level_results_sha256": "243adec6dd17199558ba9d70b424d1de7478b67184495662fe1f2297e29ae9ab",
+  "summary_sha256": "2dca624e1d9b8bcca3c86c734998038c1a23f055f5d9f0e13bd88ab130f70277",
+  "config_sha256": "215379458ecc216ad67780dbefdba4f68b41d4adfb74ab78847fa2afa96a2da8",
+  "input_hashes": {
+    "items.csv": "1efd8295f52c8531ec5bf6c3de37228a56bad2f2c653e79c4869baaf637edcc6",
+    "stores.csv": "af503b2bce11d7906d249f81cc0598f10e2addcc9f6c59aa2d95c9f2652c296b",
+    "train.csv": "ccf4236a6b58b0db937b8c5006a0ad8fffef6acd06bed1c10cd5cd4d68d93248"
+  },
+  "role_counts": {
+    "development": 2911,
+    "validation": 413,
+    "confirmation": 250
+  },
+  "pseudo_target_counts": {
+    "training": 36,
+    "validation": 12,
+    "held_out_diagnostic": 12
+  },
+  "encoder_categories": [
+    33,
+    327,
+    2
+  ],
+  "matched_rows_per_method": {
+    "adapted_zig_mc_catboost": 3000,
+    "complete_similarity": 3000,
+    "complete_uniform": 3000,
+    "component_specific_transfer": 3000,
+    "matched_shared_relation": 3000,
+    "rolling_global_quantile": 3000,
+    "single_donor": 3000
+  },
+  "elapsed_seconds": 967.4407999515533,
+  "target_pre_cutoff_demand_used": false,
+  "confirmation_used_for_tuning": false,
+  "interpretation": "same-domain training with frozen isolated products; observed aggregate sales, not verified launches or latent demand",
+  "paired_interval_authority": {
+    "file": "outputs/ai_darld_v3/favorita_confirmation_v1/paired_contrasts.csv",
+    "bootstrap_draws": 5000,
+    "cost_seed": 20261004,
+    "service_seed": 20261005,
+    "seed_scope": "reinitialized independently for each comparator",
+    "sha256": "2d66eaecfd0daaf9284d3c3d8e658f4ffcd2090596d2810cb24854730006a564"
+  }
+}

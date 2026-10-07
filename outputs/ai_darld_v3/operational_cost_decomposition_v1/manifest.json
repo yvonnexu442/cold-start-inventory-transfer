@@ -1,0 +1,23 @@
+{
+  "status": "completed_from_frozen_row_level_outputs",
+  "no_policy_refitting": true,
+  "cost_identity_checked": true,
+  "fixed_cost_computed_from_operating_metadata": true,
+  "zero_action_has_zero_fixed_cost_checked": true,
+  "zero_fixed_cost_protocols_checked": [
+    "BRAF",
+    "UCI",
+    "Favorita"
+  ],
+  "complete_evaluation_key_pairs_checked": true,
+  "service_is_point_estimate": true,
+  "comparisons": {
+    "BRAF": "factorized_similarity_residual vs similarity_complete",
+    "MAN": "factorized_similarity_residual vs similarity_complete",
+    "UCI": "factorized_similarity_residual vs shared_similarity_residual and complete_similarity"
+  },
+  "inputs": {
+    "outputs/runs/ai_darld_v3/historical_support_v4_authority_results.parquet": "a1b98dd8e623dc2f3baf6e4a909d3829417563907804e586e70f1921fd7c50fd",
+    "outputs/ai_darld_v3/uci_confirmation_v3_rows.parquet": "3068028de5b6f0aece3b31c5911d444a1cb706060e210b9c36ce669e58b63146"
+  }
+}

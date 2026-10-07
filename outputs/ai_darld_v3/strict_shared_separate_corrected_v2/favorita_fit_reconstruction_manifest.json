@@ -1,0 +1,48 @@
+{
+  "status": "reconstructed_exact_fitted_state_from_authoritative_csv",
+  "source": "outputs/ai_darld_v3/strict_shared_separate_v1/favorita_fits.csv",
+  "source_sha256": "bbb36c41e922a811f415c8a2d28725d7b8c39ca09000f2531564712a44585eb4",
+  "basis": "retail worker-global tasks remained alive; fitted coefficients, contraction, intercept, selected candidate, and objectives are complete in CSV",
+  "checkpoints": [
+    {
+      "checkpoint": "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/fit_checkpoints/favorita_20260930_strict_shared.json",
+      "sha256": "9cedb454e36957d73ae14f65fd80c7f20fa529cbe572772068792686d28dca46"
+    },
+    {
+      "checkpoint": "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/fit_checkpoints/favorita_20260930_strict_separate.json",
+      "sha256": "f201ea59b5b94394a0d923bf1fc2689542d587a3214f7513bbfdc0c07190cc23"
+    },
+    {
+      "checkpoint": "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/fit_checkpoints/favorita_20261011_strict_shared.json",
+      "sha256": "f0eda4e0cacde2f2ac874b8303d92092ea2c35b65bb7f71a23447b875c6f57dc"
+    },
+    {
+      "checkpoint": "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/fit_checkpoints/favorita_20261011_strict_separate.json",
+      "sha256": "ffd6d248c66f8b1b614eb28f832a7a727374fe0457c2262271202f3fd2c98097"
+    },
+    {
+      "checkpoint": "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/fit_checkpoints/favorita_20261023_strict_shared.json",
+      "sha256": "30b1b6918e5eba8d385e9d5e784cbc1abeed02c7b6ba686b572cf3e9416dd293"
+    },
+    {
+      "checkpoint": "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/fit_checkpoints/favorita_20261023_strict_separate.json",
+      "sha256": "ad2e944960dddb84b1685229a0cfaef8ec091323b04361fcbdf45109844c9ccc"
+    },
+    {
+      "checkpoint": "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/fit_checkpoints/favorita_20261037_strict_shared.json",
+      "sha256": "27d01f1dab9cf03a74d3905e89f3b1a311bc0172ef00b6b5670aa8151c5566d9"
+    },
+    {
+      "checkpoint": "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/fit_checkpoints/favorita_20261037_strict_separate.json",
+      "sha256": "b5c592506278f94dab7b3def9b5af677783ebcd474b095e3450721caf2070066"
+    },
+    {
+      "checkpoint": "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/fit_checkpoints/favorita_20261051_strict_shared.json",
+      "sha256": "e07b5c479a489253b4880363fe3a70bb293b5a0ccfe6270b2107e3325358e574"
+    },
+    {
+      "checkpoint": "outputs/ai_darld_v3/strict_shared_separate_corrected_v2/fit_checkpoints/favorita_20261051_strict_separate.json",
+      "sha256": "b94eb889c740fb744ed7e9fcd02aee9422ea839faebdb74841114808258e284d"
+    }
+  ]
+}

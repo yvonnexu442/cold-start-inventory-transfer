@@ -1,0 +1,14 @@
+{
+  "schema": "historical-support-v4-authority-v1",
+  "created": "2026-10-03",
+  "support_interface": "occurrence contraction uses raw effective historical windows; magnitude contraction uses raw positive historical windows; transforms occur once inside the policy; simulation atoms are numerical only",
+  "primary_policy": "factorized_similarity_residual",
+  "service_parts_input": "historical_support_v4_results.parquet",
+  "unchanged_baseline_input": "corrected_authority_results.parquet (global and adapted ZIG-MC only)",
+  "supersedes_for_current_claims": [
+    "corrected_authority_manifest.json factorized/shared rows",
+    "all pre-support-fix factorized results"
+  ],
+  "evaluation_population": "250 reused targets per dataset; not untouched confirmation",
+  "bootstrap": "target-clustered, repeated contexts retained within target, 4000 replicates"
+}

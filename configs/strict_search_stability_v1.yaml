@@ -1,0 +1,38 @@
+protocol_id: strict_search_stability_v1
+status: frozen_before_supplementary_outcome_evaluation
+frozen_at_utc: '2026-10-05T18:30:00Z'
+question: sensitivity of strict shared/separate decisions to a finite nested candidate search
+evidence_role: supplementary_reused_populations
+budgets: [100, 200]
+candidate_stream:
+  fixed_tied_anchors: 4
+  unique_tied_candidates: half_of_total_budget
+  untied_candidates_for_separate: half_of_total_budget
+  shared_slot_accounting: each unique tied candidate occupies two deterministic slots; identical training objectives are memoized
+  duplicate_shortlist_rule: coefficient-identical candidates are de-duplicated before the fixed shortlist is formed
+  separate_contains_every_unique_shared_candidate: true
+  budget_nesting: the 100-budget unique tied and untied streams are prefixes/subsets of the 200-budget streams
+  interpretation: equal total candidate slots, unequal model capacity; no empirical no-regret guarantee
+  actual_training_evaluations: unique coefficient candidates times four contraction values
+models:
+  common:
+    features: [metadata_similarity, donor_event_rate, log1p_raw_positive_support, positive_size_level]
+    contraction_alpha_grid: [0.0, 0.25, 0.50, 0.75]
+    validation_shortlist_per_alpha: 12
+    calibration_weight: 0.10
+    occurrence_shift_grid: [-1.5, -1.25, -1.0, -0.75, -0.5, -0.25, 0.0, 0.25, 0.5, 0.75, 1.0, 1.25, 1.5]
+    training_objective: realized-demand-normalized exact decision cost plus 0.10 times Brier plus conditional-positive size error
+    evaluation_estimand: equally weighted raw realized inventory cost
+  strict_shared: tied occurrence and positive-size coefficients
+  strict_separate: untied occurrence and positive-size coefficients
+datasets:
+  MAN: {anchor: similarity_residual, bootstrap_draws: 4000, policy_seeds: [20260930, 20261011, 20261023, 20261037, 20261051]}
+  BRAF: {anchor: similarity_residual, bootstrap_draws: 4000, policy_seeds: [20260930, 20261011, 20261023, 20261037, 20261051]}
+  UCI: {anchor: similarity_residual, bootstrap_draws: 2000, policy_seeds: [20260930, 20261011, 20261023, 20261037, 20261051]}
+  Favorita: {anchor: unanchored, bootstrap_draws: 5000, policy_seeds: [20260930, 20261011, 20261023, 20261037, 20261051]}
+reporting:
+  ensemble: paired raw-cost difference and target-product clustered percentile interval
+  seed_level: paired cost and service differences for every original seed
+  fitted_state: contraction, calibration intercept, training objective, validation objective
+  uncertainty_scope: product interval for fixed ensemble; seed variation reported separately
+stopping_rule: run all four populations at exactly 100 and 200 candidate slots; no additional budget, feature, subgroup, or rule after outcomes

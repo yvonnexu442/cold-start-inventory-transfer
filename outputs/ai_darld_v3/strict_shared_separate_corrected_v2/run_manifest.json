@@ -1,0 +1,11 @@
+{
+  "status": "partial_service_parts",
+  "config": "configs/strict_shared_separate_corrected_v2.yaml",
+  "config_sha256": "b913db11720bfe1936c5b4e65d942f9b49fe2598ccc891cbc5ec7851cc83666c",
+  "source_commit": "8e6e467958889b3a1c80aed6da1f7256bd9af98d",
+  "datasets_completed": [
+    "BRAF"
+  ],
+  "search_budget": null,
+  "elapsed_seconds": 5244.0004189014435
+}

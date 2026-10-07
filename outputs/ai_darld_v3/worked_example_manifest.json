@@ -1,0 +1,18 @@
+{
+  "analysis": "illustrative walkthrough of an existing formal fitted policy",
+  "selection_frozen_before_outcome_inspection": true,
+  "selection_rule": "lexicographically first redacted BRAF target; earliest cutoff; native horizon; ratio 5; unconstrained",
+  "formal_policy": "factorized_similarity_residual",
+  "comparator": "complete_similarity",
+  "dataset": "BRAF",
+  "ratio": 5.0,
+  "capacity": null,
+  "future_target_demand_used_for_selection_or_action": false,
+  "weights": "post-contraction, averaged across the five formal fitted seeds",
+  "event_probability": "ensemble mean after each seed's validation-fitted logit intercept",
+  "positive_law": "horizon lead-demand atoms; magnitude weights renormalized over positive-support donors",
+  "parameter_file": "outputs/ai_darld_v3/historical_support_v4_parameters_braf.csv",
+  "parameter_file_sha256": "8b43e55fb800870af538eda271aa19a6bbde553c85138d6c121063fef4ac9fe4",
+  "checkpoint_file": "outputs/full_scale/checkpoints/braf_reliability.parquet",
+  "checkpoint_file_sha256": "6b242a9b70dd19779a979dd07e48ff7f3e69e4c7f6fd03bcace2e39857205b92"
+}

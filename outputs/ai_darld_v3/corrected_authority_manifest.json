@@ -1,0 +1,72 @@
+{
+  "authority": "../runs/ai_darld_v3/corrected_authority_results.parquet",
+  "factorized_source": "../runs/ai_darld_v3/factorized_transfer_results.parquet",
+  "global_source": "../runs/ai_darld_v3/corrected_global_results.parquet",
+  "factorized_manifest": "factorized_manifest.json",
+  "global_manifest": "corrected_global_manifest.json",
+  "search_sufficiency_record": "search_sufficiency_summary.csv",
+  "temporal_boundary_record": "temporal_boundary_audit.csv",
+  "metadata_multiseed_record": "metadata_degradation_multiseed_summary.csv",
+  "candidate_budget": {
+    "fixed_anchors": 4,
+    "random_candidates": 24,
+    "validation_shortlist": 12,
+    "selection_basis": "historical development tasks only"
+  },
+  "metadata_perturbation_seeds": [
+    20260930,
+    20261011,
+    20261023
+  ],
+  "methods": [
+    "single_complete",
+    "uniform_complete",
+    "similarity_complete",
+    "shared_hurdle",
+    "factorized_no_contraction",
+    "factorized_no_occurrence_calibration",
+    "factorized_transfer",
+    "global_quantile",
+    "zig_mc_catboost_adapted"
+  ],
+  "matched_rows_by_dataset_method": {
+    "factorized_no_contraction": {
+      "BRAF": 13500,
+      "MAN": 13500
+    },
+    "factorized_no_occurrence_calibration": {
+      "BRAF": 13500,
+      "MAN": 13500
+    },
+    "factorized_transfer": {
+      "BRAF": 13500,
+      "MAN": 13500
+    },
+    "global_quantile": {
+      "BRAF": 13500,
+      "MAN": 13500
+    },
+    "shared_hurdle": {
+      "BRAF": 13500,
+      "MAN": 13500
+    },
+    "similarity_complete": {
+      "BRAF": 13500,
+      "MAN": 13500
+    },
+    "single_complete": {
+      "BRAF": 13500,
+      "MAN": 13500
+    },
+    "uniform_complete": {
+      "BRAF": 13500,
+      "MAN": 13500
+    },
+    "zig_mc_catboost_adapted": {
+      "BRAF": 13500,
+      "MAN": 13500
+    }
+  },
+  "legacy_result_status": "superseded_not_for_current_claims",
+  "evaluation_population": "reused_frozen_targets"
+}

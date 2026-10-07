@@ -1,0 +1,172 @@
+schema: favorita-untouched-confirmation-v1
+status: AMENDED_BEFORE_OUTCOME_EVALUATION_FOR_365_DAY_HISTORY_FEASIBILITY
+frozen_at: 2026-10-04T00:00:00-07:00
+
+source:
+  dataset: Corporacion Favorita Grocery Sales Forecasting
+  official_url: https://www.kaggle.com/competitions/favorita-grocery-sales-forecasting
+  rules_url: https://www.kaggle.com/competitions/favorita-grocery-sales-forecasting/rules
+  permitted_use: academic_research_under_competition_rules
+  redistribution: forbidden
+  local_archive: data/raw/favorita/favorita-grocery-sales-forecasting.zip
+  archive_size_bytes: 480014675
+  archive_sha256: dfd22643758ca70d61874f79f9a4065a2d3e964fd012c6481796f5fa086d46af
+  schema_contract: configs/favorita_untouched_confirmation_schema_v1.json
+
+evidence_role:
+  name: untouched_confirmation_population
+  prior_repository_mentions_found: false
+  prior_outcome_inspection_for_current_hypotheses: false
+  same_domain_training: true
+  cross_domain_direct_transfer: false
+  one_time_opening: true
+  no_method_or_analysis_change_after_scoring: true
+
+research_questions:
+  rq1: How do global prediction, complete empirical transfer, and learned transfer compare under the same zero-history information and inventory-decision boundary?
+  rq2: Within learned transfer, what does separating occurrence and conditional-positive relations add relative to the matched shared-relation policy?
+
+calendar_and_demand:
+  frequency: daily
+  aggregation_unit: item_across_all_stores
+  observation_calendar_start: 2016-06-01
+  observation_calendar_end: 2017-08-15
+  aggregation_order:
+    - sum_store_item_transactions_by_item_and_day_including_negative_rows
+    - clip_negative_daily_item_totals_to_zero
+    - reindex_every_eligible_item_to_the_common_daily_calendar_with_explicit_zero_sales
+  negative_reporting:
+    - fraction_transaction_rows_with_negative_unit_sales
+    - fraction_observed_item_days_with_negative_net_total_before_clipping
+    - fraction_all_calendar_item_days_affected_by_clipping
+    - absolute_and_net_units_clipped
+  interpretation: observed_sales_not_stock_unconstrained_latent_demand
+  first_transaction_is_launch_date: false
+
+metadata:
+  primary_static_fields: [family, class, perishable]
+  class_treatment: categorical
+  similarity: cosine_on_training_fitted_one_hot_family_class_perishable
+  fit_scope: development_products_only
+  missing_category: explicit_missing_level
+  target_pre_cutoff_demand_used: false
+  target_post_cutoff_demand_used_before_scoring: false
+  store_metadata_role: aggregation_diagnostic_only
+  store_metadata_in_primary_model: false
+
+roles:
+  assignment_unit: item_nbr
+  hash: sha256
+  salt: favorita-untouched-confirmation-v1
+  modulus: 100
+  development_bins: [0, 69]
+  validation_bins: [70, 79]
+  confirmation_bins: [80, 99]
+  role_overlap_allowed: false
+  all_cutoffs_and_contexts_same_role: true
+  confirmation_target_count: 250
+  confirmation_selection: lowest_sha256_hash_among_schema_eligible_confirmation_items
+  pseudo_target_count_per_cutoff: 60
+  pseudo_target_selection: lowest_sha256_hash_among_schema_eligible_development_items
+  donor_pool: all_schema_eligible_development_items_excluding_current_pseudo_target
+  confirmation_products_in_donor_pool: false
+  validation_products_in_donor_pool: false
+
+eligibility:
+  metadata_complete_after_explicit_missing_encoding: true
+  product_id_must_appear_in_items_file: true
+  product_id_must_be_representable_by_development_fitted_metadata_encoder: true
+  target_demand_values_used_for_selection: false
+  donor_minimum_calendar_history_days: 365
+  donor_minimum_positive_history_days: 5
+  donor_eligibility_uses_cutoff_only: true
+  insufficient_target_future_rows: impossible_after_common_calendar_reindexing
+  no_target_removed_for_zero_or_difficult_future_demand: true
+
+tasks:
+  cutoffs: [2017-05-31, 2017-07-18]
+  demand_horizons_days: [14, 28]
+  required_history_days: 365
+  donors_per_target: 10
+  donor_empirical_atoms: 300
+  policy_training_atoms: 120
+  shortage_holding_ratios: [2, 5, 10]
+  holding_cost: 1.0
+  fixed_order_cost: 0.0
+  minimum_order_quantity: 0.0
+  capacity: null
+  constraint_interpretation: standard_unconstrained_continuous_initial_stock_no_invented_business_fields
+  context_weighting: equal_across_cutoff_horizon_ratio_rows
+
+methods:
+  required:
+    - single_donor
+    - complete_uniform
+    - complete_similarity
+    - matched_shared_relation
+    - component_specific_transfer
+    - rolling_horizon_matched_global_quantile
+    - adapted_zig_mc_catboost
+  component_specific_policy:
+    implementation: FactorizedTransferPolicy
+    random_candidate_count: 96
+    fixed_anchor_count: 4
+    pseudo_target_split: [0.60, 0.20, 0.20]
+    training_objective: normalized_exact_feasible_decision_cost_plus_0.10_calibration_loss
+    occurrence_calibration: validation_only_logit_intercept
+    occurrence_logit_shift_grid: [-1.50, -1.25, -1.00, -0.75, -0.50, -0.25, 0.00, 0.25, 0.50, 0.75, 1.00, 1.25, 1.50]
+    exact_distribution_evaluation: true
+  seeds: [20260930, 20261011, 20261023, 20261037, 20261051]
+  no_confirmation_tuning: true
+
+global_quantile:
+  rolling_origins_per_development_product: 4
+  horizon_specific_models: true
+  quantiles: [0.05, 0.10, 0.25, 0.50, 0.6666667, 0.75, 0.8333333, 0.90, 0.9090909, 0.95]
+  preprocessing_fit_scope: development_rows_only
+  quantile_monotonization: true
+  horizon_scaling_forbidden: true
+
+zig_mc:
+  status: adapted_structural_reproduction
+  occurrence_model: CatBoostClassifier
+  positive_size_model: CatBoostRegressor_on_log1p_positive_lead_demand
+  gamma_shape: 2.0
+  gamma_shape_interpretation: project_adaptation_not_claimed_as_exact_published_setting
+  preprocessing_fit_scope: development_rows_only
+
+metrics:
+  primary: equally_weighted_mean_realized_inventory_cost
+  secondary: [service_fill_proxy, critical_quantile_pinball, occurrence_brier, calibration, highest_loss_decile_mean_cost, zero_action_rate, order_quantity]
+  cost_difference_sign: component_specific_minus_comparator
+  uncertainty: product_clustered_paired_bootstrap
+  bootstrap_draws: 5000
+  bootstrap_seed: 20261004
+  training_seed_variability_reported_separately: true
+  repeated_rows_not_independent: true
+
+confirmation_hypotheses:
+  primary_competitive: component_specific_minus_best_complete_mixture_cost
+  primary_structural: component_specific_minus_matched_shared_cost
+  secondary_global: component_specific_minus_global_quantile_cost
+  no_universal_superiority_claim: true
+
+triage:
+  A: component_specific_improves_best_complete_and_matched_shared
+  B: component_specific_improves_matched_shared_only
+  C: complete_or_global_policy_remains_stronger
+  D: information_boundary_or_schema_is_scientifically_incomparable
+  all_branches_reported: true
+  no_second_confirmation_dataset_after_outcome_opening: true
+
+hard_stops:
+  - archive_or_required_schema_hash_mismatch
+  - required_files_or_fields_missing
+  - role_overlap
+  - confirmation_item_in_any_training_validation_preprocessing_or_donor_role
+  - cutoff_or_horizon_outside_common_calendar
+  - fewer_than_250_schema_eligible_confirmation_items
+  - fewer_than_10_eligible_donors_at_any_task_cutoff
+  - duplicate_evaluation_keys
+  - missing_method_rows_on_matched_keys
+  - target_outcome_access_before_one_time_scoring

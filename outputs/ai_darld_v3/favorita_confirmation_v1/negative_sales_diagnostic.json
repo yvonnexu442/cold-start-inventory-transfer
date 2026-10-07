@@ -1,0 +1,14 @@
+{
+  "transaction_rows": 44661573,
+  "negative_transaction_rows": 2915,
+  "negative_transaction_row_fraction": 6.52686370898759e-05,
+  "negative_transaction_units_absolute": 38711.188720703125,
+  "observed_item_days_before_calendar_fill": 1629425,
+  "negative_net_item_days_before_clipping": 52,
+  "negative_net_observed_item_day_fraction": 3.191309817880541e-05,
+  "all_calendar_item_days": 1808100,
+  "negative_net_all_calendar_item_day_fraction": 2.8759471268182068e-05,
+  "net_units_clipped": 11692.2001953125,
+  "explicit_zero_item_days": 178746,
+  "explicit_zero_item_day_fraction": 0.09885847021735523
+}

@@ -1,0 +1,3 @@
+method,relation_coefficients,calibration_intercepts,continuous_fitted_parameters,selected_contraction_hyperparameters,fit_rows
+strict_shared,4,1,5,1,40
+strict_separate,8,1,9,1,40

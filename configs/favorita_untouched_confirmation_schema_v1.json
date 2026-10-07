@@ -1,0 +1,20 @@
+{
+  "schema": "favorita-untouched-confirmation-schema-v1",
+  "source": "Corporacion Favorita Grocery Sales Forecasting",
+  "official_url": "https://www.kaggle.com/competitions/favorita-grocery-sales-forecasting",
+  "expected_members": {
+    "train.csv": ["id", "date", "store_nbr", "item_nbr", "unit_sales", "onpromotion"],
+    "items.csv": ["item_nbr", "family", "class", "perishable"],
+    "stores.csv": ["store_nbr", "city", "state", "type", "cluster"]
+  },
+  "required_primary_fields": {
+    "demand": ["date", "item_nbr", "unit_sales"],
+    "static_metadata": ["item_nbr", "family", "class", "perishable"]
+  },
+  "diagnostic_only_fields": {
+    "transaction_aggregation": ["store_nbr"],
+    "store_metadata": ["city", "state", "type", "cluster"],
+    "excluded_from_primary_models": ["store_nbr", "city", "state", "type", "cluster", "onpromotion"]
+  },
+  "schema_failure_rule": "Stop before outcome scoring if required members or fields differ; document incompatibility without substituting fields after inspection."
+}

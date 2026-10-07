@@ -1,0 +1,17 @@
+dataset,candidate,comparator,target_clusters,mean_cost_difference,ci95_low,ci95_high,candidate_win_share_targets,ci_scope
+BRAF,factorized_transfer,single_complete,250,-5.408344143972972,-9.143333845699921,-2.4329232614187135,0.612,target-clustered; fixed five-policy ensemble
+MAN,factorized_transfer,single_complete,250,1.3913493888844042,-10.446573130993839,15.68507640935104,0.532,target-clustered; fixed five-policy ensemble
+BRAF,factorized_transfer,uniform_complete,250,-1.6166550034529255,-3.7391328267216215,0.7871852168522223,0.748,target-clustered; fixed five-policy ensemble
+MAN,factorized_transfer,uniform_complete,250,23.023224129472336,14.612520446902874,32.48293205205412,0.492,target-clustered; fixed five-policy ensemble
+BRAF,factorized_transfer,similarity_complete,250,-2.3813037234347045,-4.522850834670048,-0.14694371046949042,0.708,target-clustered; fixed five-policy ensemble
+MAN,factorized_transfer,similarity_complete,250,24.381827359680937,15.840188943621872,33.96925560976001,0.496,target-clustered; fixed five-policy ensemble
+BRAF,factorized_transfer,shared_hurdle,250,-1.2796454436612943,-2.6363245575140404,0.12270493326780631,0.728,target-clustered; fixed five-policy ensemble
+MAN,factorized_transfer,shared_hurdle,250,-9.872545121894367,-13.753052723374198,-6.183500953818259,0.64,target-clustered; fixed five-policy ensemble
+BRAF,factorized_transfer,factorized_no_contraction,250,0.46838750223800707,0.021363589209091222,0.9833663270072325,0.348,target-clustered; fixed five-policy ensemble
+MAN,factorized_transfer,factorized_no_contraction,250,-9.570323756377311,-12.116199252042627,-7.198320048863681,0.616,target-clustered; fixed five-policy ensemble
+BRAF,factorized_transfer,factorized_no_occurrence_calibration,250,0.20703670209721045,0.043371197976232664,0.4432801373070592,0.276,target-clustered; fixed five-policy ensemble
+MAN,factorized_transfer,factorized_no_occurrence_calibration,250,-1.8613388516718519,-2.4976890984755875,-1.2700453885184773,0.588,target-clustered; fixed five-policy ensemble
+BRAF,factorized_transfer,global_quantile,250,-0.49169541540455236,-2.2685994468351875,1.6987821729619001,0.652,target-clustered; fixed five-policy ensemble
+MAN,factorized_transfer,global_quantile,250,2.805953946172657,-7.369094439698899,13.696924027466208,0.536,target-clustered; fixed five-policy ensemble
+BRAF,factorized_transfer,zig_mc_catboost_adapted,250,0.9500518657162201,-0.6444890874398217,3.1544379299648395,0.452,target-clustered; fixed five-policy ensemble
+MAN,factorized_transfer,zig_mc_catboost_adapted,250,-11.631010772733847,-17.791600456513873,-6.020583712836542,0.504,target-clustered; fixed five-policy ensemble

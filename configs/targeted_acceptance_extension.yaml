@@ -1,0 +1,75 @@
+status: FROZEN BEFORE TARGETED EXTENSION EXECUTION
+frozen_at: 2026-08-14
+random_seed: 20260814
+source_protocol: configs/full_scale.yaml
+output_path: outputs/targeted_acceptance_extension
+
+datasets: [MAN, BRAF]
+
+matched_decomposition:
+  objective: expected_cost
+  methods:
+    - single_analog
+    - uniform_multi
+    - shuffled_forecast_reliability
+    - forecast_reliability_only
+    - forecast_combined
+    - shuffled_decision_reliability
+    - decision_reliability_only
+    - decision_combined
+  primary_comparisons:
+    - [uniform_multi, single_analog]
+    - [forecast_reliability_only, shuffled_forecast_reliability]
+    - [forecast_reliability_only, uniform_multi]
+    - [forecast_combined, uniform_multi]
+    - [decision_reliability_only, shuffled_decision_reliability]
+    - [decision_reliability_only, forecast_reliability_only]
+    - [decision_combined, forecast_combined]
+    - [decision_combined, single_analog]
+  top_k: 10
+  scenario_count: 300
+  maximum_donor_weight: 0.35
+  lead_time_regimes: [native_capped, half_native_sensitivity]
+  shortage_to_holding_ratios: [2, 5, 10]
+  capacity_regimes: [unconstrained, medium, tight]
+
+decision_reliability_supervision:
+  label: within_pseudo_target_median_average_decision_cost
+  pseudo_target_count: 240
+  folds: 5
+  logistic_regularization_c: 1.0
+  scenario_count: 300
+  lead_time: native_capped_at_pseudo_validation_horizon
+  shortage_to_holding_ratios: [2, 5, 10]
+  holding_cost: 1.0
+  capacity: null
+  minimum_order_quantity: 0.0
+  fixed_order_cost: 0.0
+  aggregation: arithmetic_mean_across_cost_ratios
+  tie_rule: cost_less_than_or_equal_to_within_pool_median
+  tuning_on_evaluation_targets: forbidden
+
+metric_robustness:
+  primary: oracle_cost_normalized_regret
+  sensitivities:
+    - raw_regret
+    - realized_demand_scaled_regret
+    - donor_pool_scaled_regret
+    - target_cluster_trimmed_mean_5_percent
+  realized_demand_floor: 1.0
+  donor_pool_scale: median_donor_predecision_mean_times_lead_time
+  donor_pool_scale_floor: 1.0
+  trimming_fraction: 0.05
+
+statistics:
+  bootstrap_repetitions: 5000
+  confidence_level: 0.95
+  cluster: target_id
+  row_weighting: equal_within_dataset
+
+reporting_rules:
+  retain_all_prespecified_results: true
+  report_negative_or_null_results: true
+  no_post_outcome_hyperparameter_changes: true
+  no_method_selection_on_evaluation_outcomes: true
+  label: PRESPECIFIED POST-PRIMARY EXTENSION

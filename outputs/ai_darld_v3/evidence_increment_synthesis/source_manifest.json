@@ -1,0 +1,22 @@
+{
+  "schema": "ai-darld-v3-product-level-cost-inputs-v1",
+  "generator": "scripts/build_evidence_increment_inputs.py",
+  "generator_sha256": "dca2a814b06ec90c515797e72f982e991505b7fc7b5a6a2aac6972ae16cabaf0",
+  "source_config": "configs/evidence_increment_synthesis_sources.json",
+  "source_config_sha256": "7080946f9ffd8fa90702592640504fac9e0c6513430ee41768311cfc623d53d1",
+  "authoritative_input_sha256": {
+    "BRAF": "a1b98dd8e623dc2f3baf6e4a909d3829417563907804e586e70f1921fd7c50fd",
+    "MAN": "a1b98dd8e623dc2f3baf6e4a909d3829417563907804e586e70f1921fd7c50fd",
+    "UCI": "3068028de5b6f0aece3b31c5911d444a1cb706060e210b9c36ce669e58b63146",
+    "Favorita": "243adec6dd17199558ba9d70b424d1de7478b67184495662fe1f2297e29ae9ab"
+  },
+  "output": "outputs/ai_darld_v3/evidence_increment_synthesis/product_level_cost_inputs.csv",
+  "output_sha256": "90819e0aa69e347cebaae129b4ce2d174098f6c59ad0fd6936470f04a902aa3a",
+  "contents": "de-identified per-product policy cost sums, repeated-context counts, and deterministic bootstrap order",
+  "validation": [
+    "unique full evaluation key per method",
+    "complete policy counterparts on every evaluation key",
+    "identical realized demand across methods",
+    "identical repeated-context counts within product"
+  ]
+}

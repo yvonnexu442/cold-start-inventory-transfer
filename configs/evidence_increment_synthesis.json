@@ -1,0 +1,34 @@
+{
+  "schema": "ai-darld-v3-evidence-increment-synthesis-v1",
+  "bootstrap_draws": 5000,
+  "bootstrap_seed": 20261004,
+  "compact_source": "outputs/ai_darld_v3/evidence_increment_synthesis/product_level_cost_inputs.csv",
+  "dataset_order": ["BRAF", "MAN", "UCI", "Favorita"],
+  "panel_order": ["A", "B", "C"],
+  "panels": {
+    "A": {
+      "increment": "Multi-donor aggregation",
+      "first_policy": "complete_similarity",
+      "comparator": "single_donor"
+    },
+    "B": {
+      "increment": "Learned adaptation",
+      "first_policy": "component_specific_transfer",
+      "comparator": "complete_similarity"
+    },
+    "C": {
+      "increment": "Component separation",
+      "first_policy": "component_specific_transfer",
+      "comparator": "matched_shared_relation"
+    }
+  },
+  "datasets": {
+    "BRAF": {"source_protocol": "formal service-parts authority; support-interface corrected"},
+    "MAN": {"source_protocol": "formal service-parts authority; support-interface corrected"},
+    "UCI": {"source_protocol": "frozen UCI isolated-product evaluation v3"},
+    "Favorita": {"source_protocol": "pre-specified Favorita external evaluation; identifier-corrected execution"}
+  },
+  "estimand": "100 * (mean_cost_first - mean_cost_comparator) / mean_cost_comparator",
+  "interval": "target-product clustered percentile bootstrap; all repeated evaluation contexts retained",
+  "sign_convention": "negative favors the first policy named in each panel"
+}
