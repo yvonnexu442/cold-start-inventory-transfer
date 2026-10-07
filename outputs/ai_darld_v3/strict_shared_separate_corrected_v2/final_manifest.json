@@ -42,8 +42,7 @@
     }
   },
   "parameter_count_identity_checked": true,
-  "superseded_result": "outputs/ai_darld_v3/strict_shared_separate_v1/paired_contrasts.csv",
-  "superseded_result_sha256": "d3aa8c287480b5121cf1f92159240a5ffd703b443e58983450387b82fd69fa89",
+  "historical_comparison_generated": false,
   "fit_actions": {
     "MAN": "refit",
     "BRAF": "refit",

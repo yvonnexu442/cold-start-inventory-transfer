@@ -33,13 +33,26 @@ Full reruns require local copies of the MAN/BRAF, Online Retail II, and
 Corporacion Favorita datasets. The raw files are not redistributed here; see
 `docs/dataset_download_instructions.md`.
 
-The formal entry points are listed in `README.md`. For MAN/BRAF, first run
-`python scripts/generate_service_parts_checkpoints.py --dataset all`. It reads
+The formal entry points are listed in `README.md`. For MAN/BRAF, place the
+downloaded archive at
+`data/raw/spdf/Spare-Part-Demand-Forecasting-main.zip`, then run
+`python scripts/generate_service_parts_checkpoints.py --prepare-only` followed
+by `python scripts/generate_service_parts_checkpoints.py --dataset all`. The
+preparation step verifies `MAN.xlsx` and `BRAF.xls`, extracts them into the
+parser's frozen interim directory, and refuses to overwrite different existing
+content. The evaluation command reads
 the source workbooks through the frozen `configs/full_scale.yaml` protocol and
 writes `outputs/full_scale/checkpoints/man_reliability.parquet` and
 `braf_reliability.parquet`, together with the companion results, calibration,
 cutoff, scenario, and status files consumed downstream. Then run the service-
 parts, retail, strict-control, and summary commands in the README order.
+
+The default strict-control run and the search-sensitivity runs use separate
+output directories. Search sensitivity requires both service-parts and retail
+runners at budgets 100 and 200 before its finalizer is called. The current
+strict finalizer has no dependency on unpublished prior results; a prior
+paired-contrast file may be supplied explicitly only when a version comparison
+is desired.
 
 Full execution requires the original datasets and can be computationally
 substantial. Without those files, the included aggregate outputs and manifests

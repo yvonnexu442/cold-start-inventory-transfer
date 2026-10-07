@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -85,7 +86,33 @@ def _paired(
     return merged
 
 
-def main() -> None:
+def _historical_comparison(
+    current: pd.DataFrame, historical_path: Path, destination: Path
+) -> None:
+    if not historical_path.is_file():
+        raise FileNotFoundError(f"historical comparison file not found: {historical_path}")
+    historical = pd.read_csv(historical_path)
+    old_new = historical.merge(
+        current,
+        on="dataset",
+        suffixes=("_historical", "_current"),
+        validate="one_to_one",
+    )
+    for metric in (
+        "separate_mean_cost",
+        "shared_mean_cost",
+        "cost_difference",
+        "relative_difference_percent",
+        "ci_low",
+        "ci_high",
+    ):
+        old_new[f"change_{metric}"] = (
+            old_new[f"{metric}_current"] - old_new[f"{metric}_historical"]
+        )
+    old_new.to_csv(destination, index=False)
+
+
+def main(historical_comparison: Path | None = None) -> None:
     protocol_path = CONFIG
     protocol = yaml.safe_load(protocol_path.read_text())
     missing = [
@@ -188,26 +215,11 @@ def main() -> None:
     comparison_frame = pd.DataFrame(comparisons)
     comparison_frame.to_csv(OUTPUT / "paired_contrasts.csv", index=False)
     pd.DataFrame(parameter_rows).to_csv(OUTPUT / "parameter_counts.csv", index=False)
-    old_path = ROOT / "outputs/ai_darld_v3/strict_shared_separate_v1/paired_contrasts.csv"
-    old = pd.read_csv(old_path)
-    old_new = old.merge(
-        comparison_frame,
-        on="dataset",
-        suffixes=("_r6", "_corrected"),
-        validate="one_to_one",
-    )
-    for metric in (
-        "separate_mean_cost",
-        "shared_mean_cost",
-        "cost_difference",
-        "relative_difference_percent",
-        "ci_low",
-        "ci_high",
-    ):
-        old_new[f"change_{metric}"] = (
-            old_new[f"{metric}_corrected"] - old_new[f"{metric}_r6"]
-        )
-    old_new.to_csv(OUTPUT / "old_new_comparison.csv", index=False)
+    historical_output = OUTPUT / "historical_comparison.csv"
+    if historical_comparison is not None:
+        _historical_comparison(comparison_frame, historical_comparison, historical_output)
+    elif historical_output.exists():
+        historical_output.unlink()
     preexecution_path = OUTPUT / "preexecution_manifest.json"
     preexecution = json.loads(preexecution_path.read_text())
     manifest = {
@@ -240,8 +252,7 @@ def main() -> None:
             },
         },
         "parameter_count_identity_checked": True,
-        "superseded_result": str(old_path.relative_to(ROOT)),
-        "superseded_result_sha256": _sha256(old_path),
+        "historical_comparison_generated": historical_comparison is not None,
         "fit_actions": {
             dataset: protocol["datasets"][dataset]["fit_action"] for dataset in DATASETS
         },
@@ -250,4 +261,13 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(
+        description="Consolidate the current four-population strict evaluation."
+    )
+    parser.add_argument(
+        "--historical-comparison",
+        type=Path,
+        help="optional prior paired_contrasts.csv for a separate version comparison",
+    )
+    arguments = parser.parse_args()
+    main(arguments.historical_comparison)

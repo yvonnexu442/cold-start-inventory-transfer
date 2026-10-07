@@ -86,6 +86,9 @@ order. The first command reconstructs the local MAN/BRAF checkpoint files used
 by the subsequent service-parts scripts.
 
 ```bash
+# Extract MAN.xlsx/BRAF.xls from the downloaded ZIP and validate the paths
+python scripts/generate_service_parts_checkpoints.py --prepare-only
+
 # MAN/BRAF source preparation and local reliability checkpoints
 python scripts/generate_service_parts_checkpoints.py --dataset all
 
@@ -100,10 +103,16 @@ python scripts/run_uci_confirmation_v2.py
 python scripts/run_favorita_untouched_confirmation.py
 python scripts/analyze_favorita_confirmation.py
 
-# Strict coefficient-untying control and search sensitivity
+# Default strict coefficient-untying control
 python scripts/run_strict_shared_separate_v1.py
 python scripts/run_strict_shared_separate_retail_v1.py
 python scripts/finalize_strict_shared_separate_v1.py
+
+# Search sensitivity: service-parts and retail outputs for both frozen budgets
+python scripts/run_strict_shared_separate_v1.py --search-budget 100
+python scripts/run_strict_shared_separate_retail_v1.py --search-budget 100
+python scripts/run_strict_shared_separate_v1.py --search-budget 200
+python scripts/run_strict_shared_separate_retail_v1.py --search-budget 200
 python scripts/finalize_strict_search_stability_v1.py
 
 # Operating-condition, cost-decomposition, and walkthrough summaries
@@ -117,6 +126,20 @@ manifests remain executable; the reported study describes it as a pre-specified
 external evaluation. Local row-level outputs and checkpoints are regenerated
 from the source datasets and are not redistributed. The included manifests
 record formal output identities and source-file hashes.
+
+The preparation command expects
+`data/raw/spdf/Spare-Part-Demand-Forecasting-main.zip` and extracts the two
+required workbooks to the parser's frozen interim path. Repeated execution
+verifies identical contents and refuses to overwrite a different local file.
+The default strict run writes `strict_shared_separate_corrected_v2`; each
+search-budget run writes its own `strict_search_stability_v1/budget_<N>`
+directory, so these workflows do not overwrite one another. A historical
+version comparison is optional:
+
+```bash
+python scripts/finalize_strict_shared_separate_v1.py \
+  --historical-comparison path/to/prior_paired_contrasts.csv
+```
 
 ## Result Map
 
