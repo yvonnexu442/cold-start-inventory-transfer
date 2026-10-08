@@ -13,6 +13,8 @@ new git history. It is not a fork of the development repository.
   Online Retail II evaluation, and the walkthrough case.
 - Aggregate outputs and public manifests needed to understand the reported
   tables and sensitivity results.
+- The final Online Retail II aggregate table, frozen split, policy selection,
+  and run manifest; row-level third-party-derived outputs remain excluded.
 - Redacted product-level inputs for the cross-dataset evidence-increment
   synthesis.
 - Tests for the solver, relation laws, data adapters, result pairing, cost

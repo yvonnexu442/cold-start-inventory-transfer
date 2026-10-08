@@ -1,0 +1,31 @@
+{
+  "status": "completed",
+  "config": "configs/mechanism_confirmation_v3.yaml",
+  "confirmation_products": 120,
+  "prior_product_overlap": 0,
+  "methods_frozen_before_confirmation": [
+    "single_donor",
+    "complete_uniform",
+    "complete_similarity",
+    "shared_hurdle",
+    "factorized_original",
+    "shared_similarity_residual",
+    "factorized_similarity_residual",
+    "global_quantile",
+    "zig_mc_catboost"
+  ],
+  "rows": 12960,
+  "matched_rows_per_method": {
+    "complete_similarity": 1440,
+    "complete_uniform": 1440,
+    "factorized_original": 1440,
+    "factorized_similarity_residual": 1440,
+    "global_quantile": 1440,
+    "shared_hurdle": 1440,
+    "shared_similarity_residual": 1440,
+    "single_donor": 1440,
+    "zig_mc_catboost": 1440
+  },
+  "test_used_for_tuning": false,
+  "elapsed_seconds": 1901.8773818016052
+}
