@@ -11,3 +11,8 @@ needed to reconstruct the published splits.
 
 Use `docs/REPRODUCIBILITY.md` for the mapping from result families to scripts,
 configurations, and interpretation notes.
+
+The main service-parts summaries are generated from the unredistributed
+row-level authority parquet. A full raw-data rerun creates that parquet through
+the documented policy, global-baseline, validation, and finalization commands;
+the public aggregate CSVs allow result inspection without the raw datasets.

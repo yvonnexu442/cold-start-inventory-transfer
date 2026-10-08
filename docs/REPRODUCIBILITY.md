@@ -45,7 +45,11 @@ the source workbooks through the frozen `configs/full_scale.yaml` protocol and
 writes `outputs/full_scale/checkpoints/man_reliability.parquet` and
 `braf_reliability.parquet`, together with the companion results, calibration,
 cutoff, scenario, and status files consumed downstream. Then run the service-
-parts, retail, strict-control, and summary commands in the README order.
+parts, retail, strict-control, and summary commands in the README order. The
+service-parts sequence deliberately separates policy generation, global
+baselines, validated combination, and final authority summarization. Every
+combination checks complete evaluation keys, duplicate rows, realized demand,
+methods, and the common operating grid.
 
 The default strict-control run and the search-sensitivity runs use separate
 output directories. Search sensitivity requires both service-parts and retail
@@ -60,18 +64,17 @@ support the summary-and-figure path but do not constitute a full training rerun.
 
 ## Target-Time Decision Procedure
 
-All policies produce a finite demand law at the target-time information
-boundary. The common solver then evaluates feasible order quantities under the
-same holding cost, shortage cost, fixed-order cost, minimum-order quantity,
-capacity when present, and zero-action option.
+Donor-transfer policies produce a finite demand law at the target-time
+information boundary. The common solver then evaluates feasible order
+quantities under holding cost, shortage cost, fixed-order cost,
+minimum-order quantity, capacity when present, and a zero-action option.
 
-The global prediction baseline does not stop at a single critical quantile in
-the formal constrained evaluations. It uses dataset-level quantile levels to
-build an interpolated finite scenario law, with endpoint handling at the grid
-edges, and passes that scenario law with uniform scenario weights into the same
-solver as the donor-transfer policies. A single critical quantile is the
-closed-form simplification only for an unconstrained newsvendor case without the
-additional fixed-order, MOQ, capacity, and zero-action comparisons used here.
+For MAN/BRAF, the global prediction baseline uses dataset-level quantile levels
+to build an interpolated finite scenario law, with endpoint handling at the
+grid edges, and passes that law into the same constrained solver. Online Retail
+II and Favorita have no MOQ, capacity, or fixed-order cost in their frozen
+protocols; their global baseline uses the cost-ratio critical quantile directly,
+which is the corresponding unconstrained newsvendor action.
 
 ## Original Configuration Versus Strict Coefficient-Untying
 
@@ -133,15 +136,39 @@ and should be considered when comparing intervals across result families.
 
 ## Dataset-Specific Global-Quantile Interfaces
 
-The global prediction baseline is dataset-specific only through the empirical
-training population used to form the quantile grid and the operational
-constraints supplied to the common solver. The decision interface is shared:
-quantile grid to finite scenario law, then exact expected-cost comparison over
-feasible actions.
+The service-parts and retail protocols share the same holding--shortage
+objective but use its appropriate computational interface. MAN/BRAF require a
+scenario law for fixed cost, MOQ, capacity, and zero-action comparisons. Online
+Retail II and Favorita use the objective's critical quantile directly because
+those additional constraints are absent.
 
-The included aggregate output for this baseline is
-`outputs/ai_darld_v3/corrected_method_summary.csv`, with comparison intervals in
-`outputs/ai_darld_v3/corrected_target_clustered_comparisons.csv`.
+The final service-parts aggregate output is
+`outputs/ai_darld_v3/historical_support_v4_authority_summary.csv`, with paired
+intervals in `historical_support_v4_authority_comparisons.csv`.
+
+## Service-Parts Result Lineage
+
+The formal chain is:
+
+1. `generate_service_parts_checkpoints.py` prepares the workbooks and local
+   reliability checkpoints.
+2. `run_ai_darld_v3_factorized.py --output-tag historical_support_v4` generates
+   the component-specific, shared, and complete-transfer rows. MAN and BRAF are
+   run separately and then combined with `--assemble-only`.
+3. `run_ai_darld_v3_corrected_global.py` generates rolling global-quantile and
+   adapted ZIG--MC rows.
+4. `analyze_ai_darld_v3_corrected.py` validates and combines those families into
+   an intermediate authority file.
+5. `analyze_support_v3_similarity_residual.py` takes the final learned/complete
+   rows from the historical-support run, adds only the validated global rows,
+   and writes the authority parquet, main summary, and paired intervals.
+6. `analyze_operational_cost_decomposition.py` and
+   `analyze_operating_condition_input_quality.py` consume that authority file
+   for the paper's cost and operating-condition interpretations.
+
+Existing output tags are not reused silently: pass `--reuse-existing` only
+after verifying their manifests and inputs. `--assemble-only` requires both
+per-dataset outputs and performs no fitting.
 
 ## Public Snapshot Scope
 

@@ -678,7 +678,17 @@ def _evaluate(
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset", choices=("MAN", "BRAF"))
-    parser.add_argument("--output-tag", default="corrected_28candidate")
+    parser.add_argument("--output-tag", default="historical_support_v4")
+    parser.add_argument(
+        "--reuse-existing",
+        action="store_true",
+        help="Explicitly reuse validated per-dataset outputs instead of recomputing them.",
+    )
+    parser.add_argument(
+        "--assemble-only",
+        action="store_true",
+        help="Combine existing MAN and BRAF outputs for --output-tag without fitting policies.",
+    )
     args = parser.parse_args()
     started = time.time()
     full = yaml.safe_load((ROOT / "configs/full_scale.yaml").read_text())
@@ -691,7 +701,7 @@ def main() -> None:
         checkpoint_path = (
             ROOT / f"outputs/runs/ai_darld_v3/{args.output_tag}_{dataset.name.lower()}.parquet"
         )
-        if checkpoint_path.exists():
+        if checkpoint_path.exists() and (args.reuse_existing or args.assemble_only):
             all_rows.append(pd.read_parquet(checkpoint_path))
             parameter_path = (
                 ROOT
@@ -702,6 +712,15 @@ def main() -> None:
                 parameters.extend(saved[saved.dataset.eq(dataset.name)].to_dict("records"))
             print(f"resumed {dataset.name} from {checkpoint_path}")
             continue
+        if checkpoint_path.exists():
+            raise FileExistsError(
+                f"{checkpoint_path} already exists; use --reuse-existing to reuse it "
+                "or choose a new --output-tag"
+            )
+        if args.assemble_only:
+            raise FileNotFoundError(
+                f"--assemble-only requires the existing dataset output {checkpoint_path}"
+            )
         checkpoint = pd.read_parquet(
             ROOT / f"outputs/full_scale/checkpoints/{dataset.name.lower()}_reliability.parquet"
         )
