@@ -25,13 +25,13 @@ With the similarity-residual parameterization, learned residual scores are added
 
 Historical products are hidden in turn to form leave-one-product-out training tasks. Evaluation products are absent from retrieval, fitting, preprocessing, calibration, and model selection. Five fitted policies are ensembled. The learned objective combines normalized inventory cost with occurrence and positive-size probability terms. Candidate counts, seeds, and dataset-specific settings are frozen in `configs/ai_darld_v3.yaml` and the result-family configurations.
 
-All policies ultimately minimize the same holding, shortage, and fixed-order objective over the feasible order set, including zero, MOQ, and capacity where available. A service-calibration multiplier changes only the shortage penalty used to choose an order. Evaluation always uses the original operating costs.
+All policies ultimately minimize the same holding, shortage, and fixed-order objective over the feasible order set, including zero, MOQ, and capacity where available. Decision tuning changes only the shortage multiplier used to choose an order; it does not recalibrate the fitted occurrence probability or refit the demand distribution. Evaluation always uses the original operating costs.
 
-## 3. Fixed-policy service-calibration experiment
+## 3. Fixed-policy decision-tuning experiment
 
 ### Question
 
-For one fitted component-specific BRAF policy, how does validation-selected service calibration change its order, service, and original-objective cost, and how does the calibrated procedure compare with complete similarity?
+For one fitted component-specific BRAF policy, how does a validation-selected shortage multiplier change its order, service, and original-objective cost, and how does the tuned procedure compare with complete similarity?
 
 ### Data roles and frozen computation
 
@@ -42,7 +42,7 @@ For one fitted component-specific BRAF policy, how does validation-selected serv
 - Candidate multipliers are `1, 1.25, 1.5, 2, 3, 4, 6, 8`.
 - Calibration is performed separately by cutoff and shortage/holding ratio while pooling the two lead-time and three capacity regimes.
 - The service metric is the task-level mean served-demand proxy: 1 for zero realized demand and `min(order, demand) / demand` otherwise. It is not a pooled fill rate.
-- The selected multiplier is the lowest-original-cost feasible multiplier whose calibration service reaches complete similarity's calibration service. All nine cells are feasible.
+- The selected multiplier is the lowest-original-cost feasible multiplier whose validation service reaches complete similarity's validation service. All nine cells are feasible.
 - Evaluation intervals resample the 250 target products and retain all repeated operating contexts; 4,000 deterministic draws use seed 20261112.
 
 ### Results
@@ -53,7 +53,7 @@ For one fitted component-specific BRAF policy, how does validation-selected serv
 | Same fitted policy, validation-selected multiplier | 25.86 | .829 | 12.17 | 10.99 | 14.87 | 0.00 |
 | Complete similarity, multiplier 1 | 24.05 | .825 | 11.41 | 8.93 | 15.12 | 0.00 |
 
-Calibration of the fixed learned policy increases its mean order by 4.91 units (95% product-clustered interval `[4.20, 5.69]`) and service by .0216 (`[.0186, .0247]`). Scored at the original operating costs, it increases cost by 3.80 (`[1.25, 7.87]`): holding cost rises more than shortage cost falls. Against complete similarity, the service-calibrated learned policy has service higher by .0041 (`[.0019, .0064]`) and cost higher by 1.81 (`[.06, 4.98]`).
+Decision tuning of the fixed learned policy increases its mean order by 4.91 units (95% product-clustered interval `[4.20, 5.69]`) and service by .0216 (`[.0186, .0247]`). Scored at the original operating costs, it increases cost by 3.80 (`[1.25, 7.87]`): holding cost rises more than shortage cost falls. Against complete similarity, the tuned learned policy has service higher by .0041 (`[.0019, .0064]`) and cost higher by 1.81 (`[.06, 4.98]`).
 
 This is a retrospective exploratory analysis because the BRAF evaluation population had already been examined during study development. Evaluation outcomes do not select the fitted model, multiplier, or service target. The experiment uses a smaller fitting population and search budget than the main BRAF comparison; only contrasts within this experiment are interpretable.
 
@@ -101,6 +101,6 @@ A valid component-specific dependence analysis must specify how separate occurre
 - Online Retail II: `uci_confirmation_v3_*`; earlier `uci_online_retail_ii_external_*` files are not the paper table.
 - Favorita: `favorita_confirmation_v1/` with corrected item identities.
 - Strict coefficient-sharing: `strict_shared_separate_corrected_v2/`, not the earlier strict v1 outputs.
-- Fixed-policy service calibration: `service_calibration_fixed_policy_braf_v2/`.
+- Fixed-policy decision tuning: `service_calibration_fixed_policy_braf_v2/` (the retained path uses the historical experiment identifier).
 
 Numbers from these result families must not be exchanged merely because rounded costs appear similar.
