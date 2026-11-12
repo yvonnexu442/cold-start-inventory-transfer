@@ -13,6 +13,11 @@ new git history. It is not a fork of the development repository.
   Online Retail II evaluation, and the walkthrough case.
 - Aggregate outputs and public manifests needed to understand the reported
   tables and sensitivity results.
+- The frozen fixed-policy BRAF service-calibration script, configuration,
+  aggregate cost/service/order/component outputs, paired product-clustered
+  intervals, validation record, and run manifest.
+- A camera-ready technical supplement that defines the final method and maps
+  auxiliary evidence to stable public files.
 - The final Online Retail II aggregate table, frozen split, policy selection,
   and run manifest; row-level third-party-derived outputs remain excluded.
 - Redacted product-level inputs for the cross-dataset evidence-increment
@@ -38,6 +43,8 @@ formal results:
 - Favorita product-identifier correction;
 - retrospective pseudo-launch design and reused populations;
 - dataset-specific global-quantile interfaces.
+- fixed-policy service calibration scored at original operating costs, with
+  fitting, calibration, and evaluation product roles kept separate.
 
 The UCI and Favorita role manifests retain source catalog item keys required to
 reconstruct the frozen assignments. The compact forest-plot inputs instead use

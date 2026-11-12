@@ -27,6 +27,21 @@ It uses only
 `outputs/ai_darld_v3/evidence_increment_synthesis/product_level_cost_inputs.csv`,
 whose product identifiers are redacted.
 
+The fixed-policy service-calibration aggregates can be inspected directly in
+`outputs/ai_darld_v3/service_calibration_fixed_policy_braf_v2/`. A full rerun
+requires the BRAF raw archive and executes:
+
+```bash
+python scripts/run_matched_service_braf_exploratory.py
+```
+
+The frozen configuration is
+`configs/service_calibration_fixed_policy_braf_v2.yaml`. The runner keeps one
+fitted component-specific ensemble fixed and evaluates multiplier 1 and the
+validation-selected multiplier on identical evaluation keys. Complete
+similarity uses multiplier 1. Every policy is scored with the original holding,
+shortage, and fixed-order costs; the multiplier changes action selection only.
+
 ## Full Training and Evaluation From Raw Data
 
 Full reruns require local copies of the MAN/BRAF, Online Retail II, and
@@ -134,6 +149,14 @@ Some strict and sensitivity summaries reuse fixed populations to isolate the
 comparison under study. This reuse is documented in the corresponding manifests
 and should be considered when comparing intervals across result families.
 
+The BRAF fixed-policy service-calibration run uses 60 historical pseudo-targets
+per cutoff for fitting, a disjoint 20 for multiplier selection, and 250 further
+products for evaluation. The service metric is the mean across tasks of 1 for
+zero realized demand and `min(order, demand) / demand` otherwise; it is not a
+pooled fill rate. Because the evaluation population was available during study
+development, the analysis is labeled retrospective and exploratory even though
+its outcomes are excluded from fitting and calibration.
+
 ## Dataset-Specific Global-Quantile Interfaces
 
 The service-parts and retail protocols share the same holding--shortage
@@ -197,6 +220,8 @@ Included:
   control, search sensitivity, external populations, operating-condition
   summaries, cost decomposition, and walkthrough;
 - aggregate outputs, manifests, and redacted product-level forest-plot inputs;
+- the camera-ready technical supplement and the aggregate fixed-policy
+  service-calibration outputs;
 - tests that exercise the shared solver, relation laws, data adapters, result
   pairing, and released artifacts.
 

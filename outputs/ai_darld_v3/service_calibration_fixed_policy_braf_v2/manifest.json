@@ -1,0 +1,14 @@
+{
+  "status": "completed",
+  "analysis_label": "retrospective_exploratory_fixed_policy",
+  "config": "configs/service_calibration_fixed_policy_braf_v2.yaml",
+  "config_sha256": "3770a0495a13061daaef76ae5ba655735719bb4d08915247d228d0f949611ffd",
+  "raw_archive_sha256": "00f7ab6051ce4988cddc94b4c04c3c5e1529b1955d05adbc347e8e0c544766c2",
+  "elapsed_seconds": 86.9719009399414,
+  "evaluation_target_outcomes_used_for_calibration": false,
+  "calibration_products_per_cutoff": 20,
+  "evaluation_products": 250,
+  "fixed_policy_counterfactual": true,
+  "scoring_uses_original_operational_costs": true,
+  "interpretation": "Retrospective exploratory fixed-policy service-calibration analysis; not independent confirmation."
+}

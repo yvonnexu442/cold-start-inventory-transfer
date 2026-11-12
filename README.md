@@ -22,6 +22,10 @@ manifests, and tests needed to inspect the reported results. It does not contain
 the manuscript source, PDFs, or raw third-party datasets. Row-level evaluation
 outputs derived from the source datasets remain local.
 
+The final method definitions, auxiliary component checks, fixed-policy service
+calibration results, and unresolved evidence boundaries are consolidated in
+[`docs/CAMERA_READY_TECHNICAL_SUPPLEMENT.md`](docs/CAMERA_READY_TECHNICAL_SUPPLEMENT.md).
+
 ## Data
 
 Raw data must be downloaded from the original sources and kept under `data/raw/`
@@ -131,6 +135,10 @@ python scripts/finalize_strict_search_stability_v1.py
 python scripts/analyze_operating_condition_input_quality.py
 python scripts/analyze_operational_cost_decomposition.py
 python scripts/generate_ai_darld_v3_worked_example.py
+
+# Retrospective BRAF fixed-policy service calibration. This reuses the fitted
+# v1 policy cache when present; otherwise it fits the frozen 60-product policy.
+python scripts/run_matched_service_braf_exploratory.py
 ```
 
 The Favorita runner keeps its historical filename so the frozen protocol and
@@ -186,6 +194,10 @@ python scripts/finalize_strict_shared_separate_v1.py \
   `outputs/ai_darld_v3/operating_condition_input_quality_v1/`.
 - Cost decomposition:
   `outputs/ai_darld_v3/operational_cost_decomposition_v1/`.
+- Fixed-policy BRAF service calibration, including the uncalibrated learned
+  arm, validation-selected multiplier arm, complete-similarity comparator,
+  cost components, and product-clustered intervals:
+  `outputs/ai_darld_v3/service_calibration_fixed_policy_braf_v2/`.
 - Cross-dataset evidence-increment forest plot inputs:
   `outputs/ai_darld_v3/evidence_increment_synthesis/`.
 - Walkthrough case:
@@ -208,6 +220,12 @@ equivalent newsvendor action for those unconstrained settings.
 Additional provenance for strict controls, search budgets, product-clustered
 intervals, the Favorita identifier correction, and reused populations is in
 `docs/REPRODUCIBILITY.md`.
+
+The fixed-policy service-calibration analysis is retrospective and exploratory.
+Its evaluation population was previously inspected during study development,
+although evaluation outcomes do not enter fitting or multiplier selection. The
+analysis is not an independent confirmation and is compared only within its own
+smaller fitting and search protocol.
 
 ## Tests
 

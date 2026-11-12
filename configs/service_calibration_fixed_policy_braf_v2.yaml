@@ -1,0 +1,33 @@
+status: FROZEN BEFORE FIXED-POLICY COUNTERFACTUAL EXECUTION 2026-11-12
+analysis_label: retrospective_exploratory_fixed_policy
+dataset: BRAF
+service_metric: task_mean_served_demand_proxy
+service_definition: "Mean across evaluation tasks of 1 when realized demand is zero; otherwise min(order, demand) / demand"
+fit_products_per_cutoff: 60
+service_calibration_products_per_cutoff: 20
+service_calibration_selection: next products in the frozen outcome-independent pseudo-target permutation after the 60 fit products
+policy_seeds: [20260930, 20261011, 20261023, 20261037, 20261051]
+random_candidate_count: 24
+scenario_atoms: 300
+shortage_penalty_multipliers: [1.0, 1.25, 1.5, 2.0, 3.0, 4.0, 6.0, 8.0]
+calibration_rule: minimum original-objective mean cost among multipliers whose task-mean service is at least complete-similarity calibration service
+infeasible_rule: report infeasible and use no evaluation result for that cutoff-ratio cell
+calibration_granularity: [cutoff, shortage_holding_ratio]
+calibration_pooling: both lead regimes and all three capacity regimes
+fixed_policy_comparison:
+  - component_specific_uncalibrated_multiplier_1
+  - same_component_specific_fit_with_validation_selected_multiplier
+  - complete_similarity_multiplier_1
+scoring_costs: original holding shortage and fixed-order costs for every policy
+evaluation_products: 250
+evaluation_population: frozen BRAF targets
+evaluation_grid:
+  cutoffs: [48, 54, 60]
+  lead_time_regimes: [native_capped, half_native_sensitivity]
+  shortage_holding_ratios: [2, 5, 10]
+  capacity_regimes: [unconstrained, medium, tight]
+bootstrap:
+  cluster: target_id
+  draws: 4000
+  seed: 20261112
+evaluation_target_outcomes_used_for_calibration: false
